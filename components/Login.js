@@ -17,7 +17,7 @@ import {
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
 
-export default function App() {
+export const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -60,7 +60,11 @@ export default function App() {
 
         
         <TouchableOpacity>
-          <Text style={styles.forgot_button}>Forgotten Account?</Text>
+          <Text style={styles.forgot_button}
+          onPress={() =>
+            navigation.navigate('ForgotPassWord')
+          }
+          >Forgotten Account?</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -92,13 +96,14 @@ const styles = StyleSheet.create({
     height: SCREEN_WIDTH*0.3,
   },
   inputView: {
-    border: "solid 0.5px #4da4e0",
+    // border: "solid 0.5px #4da4e0",
+    borderWidth: 0.5,
     backgroundColor: "#fff",
     width: "80%",
     height: "15%",
     marginBottom: 20,
     marginLeft: 40,
-    alignItems: "left",
+    alignItems: "center",
     borderRadius: 24,
     shadowColor: "#000",
     shadowOffset: {
@@ -112,11 +117,12 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     flex: 1,
-    marginLeft: 40,
-    fontFamily: "SegoeUI",
-    fontStretch: 'normal',
+    alignItems: 'center',
+    // marginLeft: 40,
+    // fontFamily: "SegoeUI",
+    // fontStretch: 'normal',
     fontStyle: 'normal',
-    letterSpacing: 'normal',
+    // letterSpacing: 'normal',
     fontSize: SCREEN_WIDTH*0.04,
   },
 
@@ -152,7 +158,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 26,
     fontWeight: 'bold',
-    fontFamily: "SegoeUI",
+    // fontFamily: "SegoeUI",
     marginBottom: 10,
     marginTop: -20,
     fontSize: SCREEN_WIDTH*0.07,
@@ -161,8 +167,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
     fontSize: SCREEN_WIDTH*0.04,
-    fontWeight: 600,
-    fontFamily: "SegoeUI",
+    // fontWeight: 600,
+    // fontFamily: "SegoeUI",
   },
   frame: {
     opacity: 0.9,
@@ -174,15 +180,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: SCREEN_WIDTH*0.07,
     fontWeight: 'bold',
-    fontStretch: 'normal',
+    // fontStretch: 'normal',
     fontStyle: 'normal',
-    letterSpacing: 'normal',
+    // letterSpacing: 'normal',
     width: "100%",
     marginBottom: SCREEN_HEIGHT*0.04,
   },
   loginText: {
     color: '#4da4e0',
-    fontFamily: "SegoeUI",
+    // fontFamily: "SegoeUI",
     fontWeight: "bold",
     fontSize: SCREEN_WIDTH*0.06,
   }
