@@ -7,8 +7,7 @@ import {
   Dimensions
 } from "react-native";
 
-const CalendarDetail = () => {
-
+export const CalendarDetail = () => {
   return (
     <View style={styles.container}>
       <View style={[styles.calendarDetail]}>
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     paddingLeft: SCREEN_WIDTH*0.1,
   },
   calendarDetail: {
-    flexDirection: 'col',
+    flexDirection: 'column',
   },
   calendarTitle: {
     textAlign: "center",
@@ -127,10 +126,9 @@ const styles = StyleSheet.create({
     paddingLeft: SCREEN_WIDTH*0.02,
   },
   btnBack: {
-    backgroundColor: "beige",
+    backgroundColor: "black",
     textAlign: "center",
     padding: 15,
-    backgroundColor: "#4da4e0",
     marginTop: 10,
     borderRadius: 4,
     justifyContent: 'center',
@@ -143,4 +141,3 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = CalendarDetail;

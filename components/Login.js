@@ -20,6 +20,32 @@ import { Card } from 'react-native-paper';
 export const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+    const onLoggedIn = async () => {
+
+    const formBody = new FormData();
+    formBody.append("username", "superadmin@gmail.com");
+    formBody.append("password", "Abc@12345");
+    formBody.append("grant_type", "password");
+
+    
+   await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+      body: formBody,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            navigation.navigate('LoginSuccess')
+        }
+    });
+  };
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
@@ -55,7 +81,7 @@ export const Login = ({ navigation }) => {
 
     <View style={styles.loginButtonSection}>
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>Login</Text>
+          <Text style={styles.loginText} onPress={onLoggedIn}>Login</Text>
         </TouchableOpacity>
 
         

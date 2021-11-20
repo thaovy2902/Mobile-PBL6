@@ -9,7 +9,7 @@ import {
   Dimensions
 } from "react-native";
 
-const SideMenu = () => {
+export const SideMenu = () => {
 
   return (
     <View style={[styles.container, styles.sideMenu]}>
@@ -83,9 +83,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#4da4e0",
   },
   sideMenu: {
-    flexDirection: 'col',
+    flexDirection: 'column',
     width: '70%',
-    height: SCREEN_HEIGHT,
+    height: '100%'
+    // height: SCREEN_HEIGHT,
   },
   headerMenu: {
     marginTop: SCREEN_WIDTH*0.05,
@@ -124,4 +125,3 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = SideMenu;

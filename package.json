@@ -29,7 +29,13 @@
     "react-navigation": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "eslint": "^8.2.0",
+    "eslint-plugin-react": "^7.27.1"
   },
-  "private": true
+  "private": true,
+  "script":{
+    "lint":"eslint"
+
+}
 }
