@@ -1,32 +1,47 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text } from 'react-native';
-import { ForgotPassWord } from './components/ForgotPassWord';
-import { Login } from './components/Login';
-import { CalendarDetail } from './components/CalendarDetail'
-import { SideMenu } from './components/SideMenu'
+import { ForgotPassWord } from './containers/ForgotPassWord';
+import { Login } from './containers/Login';
+import { BigMenu } from './containers/BigMenu';
+import { CompanyCalendar } from './containers/CompanyCalendar';
+import { CalendarDetail } from './containers/CalendarDetail';
+import { Lunch } from './containers/Lunch';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {  
   return (
-    // <CalendarDetail />
-    // <SideMenu />
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen
+      <Stack.Screen
           name="Login"
           component={Login}
         />
         <Stack.Screen
           name="LoginSuccess"
-          component={CalendarDetail}
+          component={BigMenu}
         />
         <Stack.Screen
           name="ForgotPassWord"
           component={ForgotPassWord}
-        />        
+        />
+        <Stack.Screen
+          name="CompanyCalendar"
+          component={CompanyCalendar}
+        />
+        <Stack.Screen
+          name="CalendarDetail"
+          component={CalendarDetail}
+        />
+        <Stack.Screen
+          name="BigMenu"
+          component={BigMenu}
+        />
+        <Stack.Screen
+          name="Lunch"
+          component={Lunch}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
