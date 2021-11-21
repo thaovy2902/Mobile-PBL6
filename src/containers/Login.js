@@ -9,7 +9,7 @@ export const Login = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const onLoggedIn = async () => {
-    const formBody = new FormData(); 
+    const formBody = new FormData();
     formBody.append("username", "superadmin@gmail.com");
     formBody.append("password", "Abc@12345");
     formBody.append("grant_type", "password");
@@ -24,7 +24,9 @@ export const Login = ({ navigation }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        // console.log(data)
         if (data.access_token) {
+          console.log(data);
           navigation.navigate("LoginSuccess");
           setError(false);
         } else {

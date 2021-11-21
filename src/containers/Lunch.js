@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
-import { Tab, TabView } from 'react-native-elements';
-import styles from '../styles/CompanyCalendar';
-import HeaderBar from '../components/Header';
+import React, { useState } from "react";
+import { Text, View } from "react-native";
+import { Tab, TabView } from "react-native-elements";
+import styles from "../styles/CompanyCalendar";
+import HeaderBar from "../components/Header";
 export const Lunch = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   return (
@@ -15,32 +12,32 @@ export const Lunch = ({ navigation }) => {
         <Tab.Item
           title="Meal"
           titleStyle={{
-            textTransform: 'capitalize',
+            textTransform: "capitalize",
             fontSize: 16,
-            color: '#000000',
-            fontWeight: "bold"
+            color: "#000000",
+            fontWeight: "bold",
           }}
-          containerStyle={{ height: 50, backgroundColor: '#ffffff' }}
+          containerStyle={{ height: 50, backgroundColor: "#ffffff" }}
         />
         <Tab.Item
           title="Schedule"
           titleStyle={{
-            textTransform: 'capitalize',
+            textTransform: "capitalize",
             fontSize: 16,
-            color: '#000000',
-            fontWeight: "bold"
+            color: "#000000",
+            fontWeight: "bold",
           }}
-          containerStyle={{ height: 50, backgroundColor: '#ffffff' }}
+          containerStyle={{ height: 50, backgroundColor: "#ffffff" }}
         />
         <Tab.Item
           title="Provider"
           titleStyle={{
-            textTransform: 'capitalize',
+            textTransform: "capitalize",
             fontSize: 16,
-            color: '#000000',
-            fontWeight: "bold"
+            color: "#000000",
+            fontWeight: "bold",
           }}
-          containerStyle={{ height: 50, backgroundColor: '#ffffff' }}
+          containerStyle={{ height: 50, backgroundColor: "#ffffff" }}
         />
       </Tab>
       <TabView value={index} onChange={setIndex}>

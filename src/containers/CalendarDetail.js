@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import styles from '../styles/CalenderDetail';
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import styles from "../styles/CalenderDetail";
 
 export const CalendarDetail = ({ navigation }) => {
   return (
@@ -11,18 +11,14 @@ export const CalendarDetail = ({ navigation }) => {
           <View style={styles.calendarLegend}>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[
-                  styles.calendarLegendBox,
-                  styles.outlineBlueBox,
-                ]}></View>
+                style={[styles.calendarLegendBox, styles.outlineBlueBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>Off</Text>
             </View>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[
-                  styles.calendarLegendBox,
-                  styles.outlineYellowBox,
-                ]}></View>
+                style={[styles.calendarLegendBox, styles.outlineYellowBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>Lunch</Text>
             </View>
           </View>
@@ -32,17 +28,20 @@ export const CalendarDetail = ({ navigation }) => {
           <View style={styles.calendarLegend}>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[styles.calendarLegendBox, styles.fullBlueBox]}></View>
+                style={[styles.calendarLegendBox, styles.fullBlueBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>1 - Off</Text>
             </View>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[styles.calendarLegendBox, styles.fullYellowBox]}></View>
+                style={[styles.calendarLegendBox, styles.fullYellowBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>1 - Lunch</Text>
             </View>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[styles.calendarLegendBox, styles.fullGreenBox]}></View>
+                style={[styles.calendarLegendBox, styles.fullGreenBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>0 - Veggie</Text>
             </View>
           </View>
@@ -52,12 +51,16 @@ export const CalendarDetail = ({ navigation }) => {
           <View style={styles.calendarLegend}>
             <View style={styles.calendarLegendItem}>
               <View
-                style={[styles.calendarLegendBox, styles.fullPinkBox]}></View>
+                style={[styles.calendarLegendBox, styles.fullPinkBox]}
+              ></View>
               <Text style={styles.calendarLegendText}>Holiday</Text>
             </View>
           </View>
         </View>
-        <TouchableOpacity style={styles.btnBack} onPress={() => navigation.navigate('Calendar')}>
+        <TouchableOpacity
+          style={styles.btnBack}
+          onPress={() => navigation.navigate("Calendar")}
+        >
           <Text style={styles.btnBackText}>Back to Calendar</Text>
         </TouchableOpacity>
       </View>

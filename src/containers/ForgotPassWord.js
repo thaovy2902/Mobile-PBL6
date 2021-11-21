@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import styles from '../styles/ForgotPassword';
+import React, { useState } from "react";
+import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import styles from "../styles/ForgotPassword";
 
 export const ForgotPassWord = ({ navigation }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          resizeMode={'contain'}
-          source={require('../assets/logo_white.png')}
+          resizeMode={"contain"}
+          source={require("../assets/logo_white.png")}
         />
         <Text style={styles.full}>FULL HOPE</Text>
         <Text style={styles.slogan}>Try hard with more hope!</Text>
@@ -23,8 +23,8 @@ export const ForgotPassWord = ({ navigation }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder='Email Address'
-            placeholderTextColor='#868686'
+            placeholder="Email Address"
+            placeholderTextColor="#868686"
             onChangeText={(email) => setEmail(email)}
           />
         </View>
@@ -36,7 +36,7 @@ export const ForgotPassWord = ({ navigation }) => {
 
           <TouchableOpacity
             style={styles.loginBtn}
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate("Login")}
           >
             <Text style={styles.loginText}>Cancel</Text>
           </TouchableOpacity>

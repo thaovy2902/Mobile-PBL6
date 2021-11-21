@@ -36,7 +36,7 @@ export default StyleSheet.create({
     opacity: 0.9,
     width: '100%',
     height: 330,
-    margin: '0 auto',
+    margin: 0,
   },
   frameBtn: {
     flex: 1,
