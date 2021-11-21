@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/Login";
 
@@ -9,32 +8,30 @@ export const Login = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const onLoggedIn = async () => {
-    navigation.navigate("LoginSuccess");
+    const formBody = new FormData();
+    formBody.append("username", email);
+    formBody.append("password", password);
+    formBody.append("grant_type", "password");
 
-    // const formBody = new FormData();
-    // formBody.append("username", "superadmin@gmail.com");
-    // formBody.append("password", "Abc@12345");
-    // formBody.append("grant_type", "password");
-
-    // await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   body: formBody,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // console.log(data)
-    //     if (data.access_token) {
-    //       console.log(data);
-    //       navigation.navigate("LoginSuccess");
-    //       setError(false);
-    //     } else {
-    //       setError(true);
-    //     }
-    //   });
+    await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+      body: formBody,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.access_token) {
+          setError(false);
+          setEmail("");
+          setPassword("");
+          navigation.navigate("LoginSuccess");
+        } else {
+          setError(true);
+        }
+      });
   };
 
   return (
