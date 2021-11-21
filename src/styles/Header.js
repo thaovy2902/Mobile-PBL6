@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   img: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
   },
   userHeaderImg: {
-    borderRadius: 1,
+    borderRadius: 100,
   },
   userHeader: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
   },
 });

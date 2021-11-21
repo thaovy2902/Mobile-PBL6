@@ -9,30 +9,32 @@ export const Login = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const onLoggedIn = async () => {
-    const formBody = new FormData();
-    formBody.append("username", "superadmin@gmail.com");
-    formBody.append("password", "Abc@12345");
-    formBody.append("grant_type", "password");
+    navigation.navigate("LoginSuccess");
 
-    await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
-      },
-      body: formBody,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data)
-        if (data.access_token) {
-          console.log(data);
-          navigation.navigate("LoginSuccess");
-          setError(false);
-        } else {
-          setError(true);
-        }
-      });
+    // const formBody = new FormData();
+    // formBody.append("username", "superadmin@gmail.com");
+    // formBody.append("password", "Abc@12345");
+    // formBody.append("grant_type", "password");
+
+    // await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formBody,
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // console.log(data)
+    //     if (data.access_token) {
+    //       console.log(data);
+    //       navigation.navigate("LoginSuccess");
+    //       setError(false);
+    //     } else {
+    //       setError(true);
+    //     }
+    //   });
   };
 
   return (

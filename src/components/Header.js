@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { Header } from 'react-native-elements';
 import styles from '../styles/Header';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 const MyCustomRightComponent = () => {
   return (
     <View style={[styles.userHeader]}>
@@ -16,13 +16,9 @@ const MyCustomRightComponent = () => {
 const MyCustomLeftComponent = ({ navigation }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('BigMenu')}
+      onPress={() => navigation.navigate('MainMenu')}
       style={styles.menuBtn}>
-      <Image
-        style={styles.img}
-        resizeMode={'contain'}
-        source={require('../assets/transparent-arrow-icon.png')}
-      />
+      <Icon name="arrow-left" size={30} color="#fff" />
     </TouchableOpacity>
   );
 };
@@ -35,7 +31,7 @@ const HeaderBar = ({ title, navigation }) => {
       leftComponent={<MyCustomLeftComponent navigation={navigation} />}
       centerComponent={{
         text: title,
-        style: { color: '#fff', fontSize: 20, fontWeight: 'bold' },
+        style: { color: '#fff', fontSize: 16, fontWeight: '500' },
       }}
       rightComponent={<MyCustomRightComponent />}
     />

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { SpeedDial } from "react-native-elements";
-import styles from "../styles/BigMenu";
+import styles from "../styles/MainMenu";
 
-export const BigMenu = ({ navigation }) => {
+export const MainMenu = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   return (
     <View style={styles.container}>

@@ -61,7 +61,7 @@ export default StyleSheet.create({
     marginRight: 20,
   },
   menuItemText: {
-    fontSize: SCREEN_WIDTH * 0.035,
+    fontSize: SCREEN_WIDTH * 0.03,
     fontWeight: 'bold',
     display: 'flex',
     textAlign: 'center',
