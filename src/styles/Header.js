@@ -6,7 +6,7 @@ export default StyleSheet.create({
     height: 30,
   },
   userHeaderImg: {
-    borderRadius: '50%',
+    borderRadius: 1,
   },
   userHeader: {
     width: 30,

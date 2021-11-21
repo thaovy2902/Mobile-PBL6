@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 import { Tab, TabView } from 'react-native-elements';
 import styles from '../styles/CompanyCalendar';
-import Header from './Header';
+import HeaderBar from '../components/Header';
 export const Lunch = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   return (
     <View style={styles.container}>
-      <Header title="Lunch Management" navigation={navigation}></Header>
+      <HeaderBar title="Lunch Management" navigation={navigation}></HeaderBar>
       <Tab value={index} onChange={setIndex}>
         <Tab.Item
           title="Meal"

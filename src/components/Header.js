@@ -26,7 +26,7 @@ const MyCustomLeftComponent = ({ navigation }) => {
     </TouchableOpacity>
   );
 };
-const AppHeader = ({ title, navigation }) => {
+const HeaderBar = ({ title, navigation }) => {
   return (
     <Header
       containerStyle={{
@@ -42,4 +42,4 @@ const AppHeader = ({ title, navigation }) => {
   );
 };
 
-module.exports = AppHeader;
+export default HeaderBar;

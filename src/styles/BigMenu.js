@@ -46,7 +46,8 @@ export default StyleSheet.create({
   },
   menuItem: {
     backgroundColor: 'white',
-    display: 'block',
+    // display: 'block',
+    display: 'flex',
     width: SCREEN_WIDTH * 0.32,
     height: SCREEN_WIDTH * 0.32,
     borderRadius: 12,
@@ -62,7 +63,7 @@ export default StyleSheet.create({
   menuItemText: {
     fontSize: SCREEN_WIDTH * 0.035,
     fontWeight: 'bold',
-    display: 'inline',
+    display: 'flex',
     textAlign: 'center',
   },
   frameSetting: {

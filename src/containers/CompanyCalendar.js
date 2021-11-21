@@ -5,11 +5,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styles from '../styles/CompanyCalendar';
-import Header from './Header';
+import HeaderBar from '../components/Header';
 export const CompanyCalendar = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header title="Company Calendar" navigation={navigation}></Header>
+      <HeaderBar title="Company Calendar" navigation={navigation}></HeaderBar>
       <View style={styles.frame}>
         <TouchableOpacity style={styles.detailBtn}>
           <Text

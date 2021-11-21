@@ -6,16 +6,13 @@ module.exports = {
     es6: true,
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
-  "parserOptions": {
-    "ecmaVersion": 2017
-},
-//   parserOptions: {
-//     ecmaFeatures: {
-//       jsx: true,
-//     },
-//     ecmaVersion: 2017,
-//     sourceType: "module",
-//   },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2017,
+    sourceType: "module",
+  },
   plugins: ["react"],
   rules: {
     "no-console": 0,

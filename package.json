@@ -1,5 +1,5 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -20,13 +20,18 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-paper": "3.6.0",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "~0.13.12",
-    "react-navigation": "*"
+    "react-navigation": "*",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -34,8 +39,7 @@
     "eslint-plugin-react": "^7.27.1"
   },
   "private": true,
-  "script":{
-    "lint":"eslint"
-
-}
+  "script": {
+    "lint": "eslint"
+  }
 }
