@@ -59,7 +59,7 @@ export const CalendarDetail = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.btnBack}
-          onPress={() => navigation.navigate("Calendar")}
+          onPress={() => navigation.navigate("CompanyCalendar")}
         >
           <Text style={styles.btnBackText}>Back to Calendar</Text>
         </TouchableOpacity>
