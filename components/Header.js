@@ -1,72 +1,45 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, TouchableOpacity } from 'react-native';
+import { Header } from 'react-native-elements';
+import styles from '../styles/Header';
 
-
-const Header = () => {
-
+const MyCustomRightComponent = () => {
   return (
-    <View style={[styles.container, styles.header]}>
-      <TouchableOpacity style={styles.menuBtn}>
-          <Image 
-            style={styles.img}
-            resizeMode={'contain'}
-            source={require("../assets/icon_menu.png")} />
-      </TouchableOpacity>
-      <View style={styles.logoHeader}>
-        <Image 
-            style={[styles.img, styles.logoHeaderImg]}
-            resizeMode={'contain'}
-            source={require("../assets/logo_white.png")} />
-      </View>
-      <View style={[styles.userHeader]}>
-        <Image 
+    <View style={[styles.userHeader]}>
+      <Image
         style={[styles.img, styles.userHeaderImg]}
-
-        source={require("../assets/anhcanhan_DuongThaoVy.jpg")} />
-      </View>
+        source={require('../assets/user_img.jpg')}
+      />
     </View>
-  )
+  );
 };
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#4da4e0",
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    height: 60,
-  },
-  img: {
-    width: 40,
-    height: 40,
-  },
-  userHeaderImg: {
-    borderRadius: '50%',
-  },
-  logoHeaderImg: {
-    padding: 30,
-  },
-  logoHeader: {
-    alignSelf: 'baseline',
-  },
-  userHeader: {
-    width: 40,
-    height: 40,
-    paddingRight: 64,
-  },
-  menuBtn: {
-    paddingLeft: 24,
-  }
-});
+const MyCustomLeftComponent = ({ navigation }) => {
+  return (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('BigMenu')}
+      style={styles.menuBtn}>
+      <Image
+        style={styles.img}
+        resizeMode={'contain'}
+        source={require('../assets/transparent-arrow-icon.png')}
+      />
+    </TouchableOpacity>
+  );
+};
+const AppHeader = ({ title, navigation }) => {
+  return (
+    <Header
+      containerStyle={{
+        backgroundColor: '#4da4e0',
+      }}
+      leftComponent={<MyCustomLeftComponent navigation={navigation} />}
+      centerComponent={{
+        text: title,
+        style: { color: '#fff', fontSize: 20, fontWeight: 'bold' },
+      }}
+      rightComponent={<MyCustomRightComponent />}
+    />
+  );
+};
 
-module.exports = Header;
+module.exports = AppHeader;
