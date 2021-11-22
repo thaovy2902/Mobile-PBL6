@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   calendarTitle: {
     textAlign: 'center',
-    fontSize: SCREEN_WIDTH * 0.05,
+    fontSize: SCREEN_WIDTH * 0.04,
     color: 'white',
     backgroundColor: '#9a9a9a',
     paddingTop: 10,
@@ -38,6 +38,7 @@ export default StyleSheet.create({
     paddingBottom: SCREEN_HEIGHT * 0.02,
   },
   calendarLegendBox: {
+    marginTop: 6,
     height: 18,
     width: 18,
     borderRadius: 4,
@@ -76,7 +77,7 @@ export default StyleSheet.create({
   },
   btnBackText: {
     color: 'white',
-    fontSize: SCREEN_WIDTH * 0.05,
+    fontSize: SCREEN_WIDTH * 0.04,
     fontWeight: 'bold',
   },
 });

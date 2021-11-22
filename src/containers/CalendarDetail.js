@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import styles from "../styles/CalenderDetail";
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import styles from '../styles/CalenderDetail';
 
 export const CalendarDetail = ({ navigation }) => {
   return (
@@ -59,7 +59,7 @@ export const CalendarDetail = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.btnBack}
-          onPress={() => navigation.navigate("Calendar")}
+          onPress={() => navigation.navigate('CompanyCalendar')}
         >
           <Text style={styles.btnBackText}>Back to Calendar</Text>
         </TouchableOpacity>

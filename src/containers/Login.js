@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/Login";
 
@@ -10,8 +9,8 @@ export const Login = ({ navigation }) => {
 
   const onLoggedIn = async () => {
     const formBody = new FormData();
-    formBody.append("username", "superadmin@gmail.com");
-    formBody.append("password", "Abc@12345");
+    formBody.append("username", email);
+    formBody.append("password", password);
     formBody.append("grant_type", "password");
 
     await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
@@ -24,11 +23,11 @@ export const Login = ({ navigation }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data)
         if (data.access_token) {
-          console.log(data);
-          navigation.navigate("LoginSuccess");
           setError(false);
+          setEmail("");
+          setPassword("");
+          navigation.navigate("LoginSuccess");
         } else {
           setError(true);
         }

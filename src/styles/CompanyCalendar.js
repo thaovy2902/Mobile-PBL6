@@ -22,7 +22,18 @@ export default StyleSheet.create({
   },
   detailText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
+  },
+  frameCalendar: {
+    marginTop: 10,
+  },
+  item: {
+    backgroundColor: "white",
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17
   },
 });
