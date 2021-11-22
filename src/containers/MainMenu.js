@@ -34,7 +34,7 @@ export const MainMenu = ({ navigation }) => {
         <View style={styles.frameBtn}>
           <TouchableOpacity
             style={[styles.menuItem, styles.menuItemMR]}
-            onPress={() => navigation.navigate("Absence")}
+            onPress={() => navigation.navigate("Request")}
           >
             <Text style={styles.menuItemText}>Absence Management</Text>
           </TouchableOpacity>

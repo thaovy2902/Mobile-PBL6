@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   View,
@@ -11,32 +10,31 @@ import {
 } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box, Text, Center } from 'native-base';
-import HeaderBar from "../components/Header";
-import { LunchSchedule } from './LunchSchedule';
-import { LunchProvider } from './LunchProvider';
-
-const FirstRoute = () => <Center flex={1}>This is Tab 1</Center>;
+import HeaderBar from '../components/Header';
+import { MyRequest } from './MyRequest';
+import { ApprovalRequest } from './ApprovalRequest';
+import { OfficeRequest } from './OfficeRequest';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
-  first: FirstRoute,
-  second: LunchSchedule,
-  third: LunchProvider,
+  first: MyRequest,
+  second: ApprovalRequest,
+  third: OfficeRequest,
 });
 
-export const Lunch = ({navigation}) => {
+export const Request = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'Meal' },
-    { key: 'second', title: 'Schedule' },
-    { key: 'third', title: 'Provider' },
+    { key: 'first', title: 'My Request' },
+    { key: 'second', title: 'Approval' },
+    { key: 'third', title: 'Office Request' },
   ]);
 
   const renderTabBar = (props) => {
     const inputRange = props.navigationState.routes.map((x, i) => i);
     return (
-      <Box flexDirection="row">
+      <Box flexDirection='row'>
         {props.navigationState.routes.map((route, i) => {
           const opacity = props.position.interpolate({
             inputRange,
@@ -51,16 +49,21 @@ export const Lunch = ({navigation}) => {
           return (
             <Box
               key={i}
-              borderBottomWidth="3"
+              borderBottomWidth='3'
               borderColor={borderColor}
               flex={1}
-              alignItems="center"
-              p="3">
+              alignItems='center'
+              p='3'
+            >
               <Pressable
                 onPress={() => {
+                  console.log(i);
                   setIndex(i);
-                }}>
-                <Animated.Text style={{ color, fontSize }}>{route.title}</Animated.Text>
+                }}
+              >
+                <Animated.Text style={{ color, fontSize }}>
+                  {route.title}
+                </Animated.Text>
               </Pressable>
             </Box>
           );
@@ -71,7 +74,7 @@ export const Lunch = ({navigation}) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title="Lunch Management" navigation={navigation}></HeaderBar>
+      <HeaderBar title='Request' navigation={navigation}></HeaderBar>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -81,6 +84,4 @@ export const Lunch = ({navigation}) => {
       />
     </NativeBaseProvider>
   );
-}
-
-
+};
