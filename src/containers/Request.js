@@ -57,7 +57,6 @@ export const Request = ({ navigation }) => {
             >
               <Pressable
                 onPress={() => {
-                  console.log(i);
                   setIndex(i);
                 }}
               >
