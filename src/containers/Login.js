@@ -8,30 +8,32 @@ export const Login = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const onLoggedIn = async () => {
-    const formBody = new FormData();
-    formBody.append("username", email);
-    formBody.append("password", password);
-    formBody.append("grant_type", "password");
+    // const formBody = new FormData();
+    // formBody.append("username", email);
+    // formBody.append("password", password);
+    // formBody.append("grant_type", "password");
 
-    await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
-      },
-      body: formBody,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.access_token) {
-          setError(false);
-          setEmail("");
-          setPassword("");
-          navigation.navigate("LoginSuccess");
-        } else {
-          setError(true);
-        }
-      });
+    // await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formBody,
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.access_token) {
+    //       setError(false);
+    //       setEmail("");
+    //       setPassword("");
+    //       navigation.navigate("LoginSuccess");
+    //     } else {
+    //       setError(true);
+    //     }
+    //   });
+    navigation.navigate("LoginSuccess");
+
   };
 
   return (

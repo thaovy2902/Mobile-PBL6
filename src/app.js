@@ -8,6 +8,8 @@ import { CompanyCalendar } from "./containers/CompanyCalendar";
 import { CalendarDetail } from "./containers/CalendarDetail";
 import { Lunch } from "./containers/Lunch";
 import { Request } from "./containers/Request";
+import { Leave } from "./containers/Leave";
+import { Employee } from "./containers/Employee";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +25,8 @@ const App = () => {
         <Stack.Screen name="MainMenu" component={MainMenu} />
         <Stack.Screen name="Lunch" component={Lunch} />
         <Stack.Screen name="Request" component={Request} />
-
+        <Stack.Screen name="Leave" component={Leave} />
+        <Stack.Screen name="Employee" component={Employee} />
       </Stack.Navigator>
     </NavigationContainer>
   );
