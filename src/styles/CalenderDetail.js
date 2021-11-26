@@ -28,6 +28,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     borderRadius: 4,
   },
+  calendarRedTitle: {
+    backgroundColor: '#e04d4d',
+  },
+  calendarOrangeTitle: {
+    backgroundColor: '#e89761',
+    marginTop: 10,
+  },
   calendarLegendItem: {
     flexDirection: 'row',
     paddingTop: SCREEN_HEIGHT * 0.01,
@@ -49,6 +56,10 @@ export default StyleSheet.create({
   },
   outlineBlueBox: {
     borderColor: '#4da4e0',
+    borderWidth: 3,
+  },
+  outlineGreenBox: {
+    borderColor: '#7fc990',
     borderWidth: 3,
   },
   fullBlueBox: {
