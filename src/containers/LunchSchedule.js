@@ -19,13 +19,15 @@ export const LunchSchedule = () => {
   return (
     <>
       <View style={styles.frameHeader}>
-        <SearchDateBar />
-        <TouchableOpacity
-          style={styles.detailBtn}
-          onPress={() => setShowModal(true)}
-        >
-          <Text style={styles.detailText}>Add</Text>
-        </TouchableOpacity>
+        <View style={styles.searchFrame}>
+          <SearchDateBar />
+          <TouchableOpacity
+            style={styles.detailBtn}
+            onPress={() => setShowModal(true)}
+          >
+            <Text style={styles.detailText}>Add</Text>
+          </TouchableOpacity>
+        </View>
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <Modal.Content maxWidth='500px'>
             <Modal.CloseButton />
@@ -51,7 +53,7 @@ export const LunchSchedule = () => {
                 <FormControl.Label>Note</FormControl.Label>
                 <Input />
               </FormControl>
-              <FormControl mt='3'>
+              <FormControl mt='3' style={{flexDirection: 'row'}}>
                 <FormControl.Label>Veggie</FormControl.Label>
                 <CheckBox />
               </FormControl>

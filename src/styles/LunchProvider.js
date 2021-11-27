@@ -5,8 +5,16 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 export default StyleSheet.create({
   frameHeader: {
     display: "flex",
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
+    paddingLeft: 20,
+    paddingRight: 20,
   },  
+  searchFrame : {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
   detailBtn: {
     width: SCREEN_WIDTH * 0.2,
     height: SCREEN_WIDTH * 0.1,
@@ -14,7 +22,6 @@ export default StyleSheet.create({
     borderRadius: 5,
     alignSelf: 'flex-end',
     justifyContent: 'center',
-    marginTop: 10
   },
   detailText: {
     color: 'white',

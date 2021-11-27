@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
-import styles from "../styles/Login";
+import React, { useState } from 'react';
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import styles from '../styles/Login';
 
 export const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
+  const onForgotPassword = () => {
+    navigation.navigate('ForgotPassWord');
+  };
   const onLoggedIn = async () => {
     // const formBody = new FormData();
     // formBody.append("username", email);
@@ -32,8 +35,7 @@ export const Login = ({ navigation }) => {
     //       setError(true);
     //     }
     //   });
-    navigation.navigate("LoginSuccess");
-
+    navigation.navigate('LoginSuccess');
   };
 
   return (
@@ -41,8 +43,8 @@ export const Login = ({ navigation }) => {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          resizeMode={"contain"}
-          source={require("../assets/logo_white.png")}
+          resizeMode={'contain'}
+          source={require('../assets/logo_white.png')}
         />
         <Text style={styles.full}>FULL HOPE</Text>
         <Text style={styles.slogan}>Try hard with more hope!</Text>
@@ -52,8 +54,8 @@ export const Login = ({ navigation }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder="Email Address"
-            placeholderTextColor="#868686"
+            placeholder='Email Address'
+            placeholderTextColor='#868686'
             value={email}
             onChangeText={(email) => setEmail(email)}
           />
@@ -62,8 +64,8 @@ export const Login = ({ navigation }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder="Password"
-            placeholderTextColor="#868686"
+            placeholder='Password'
+            placeholderTextColor='#868686'
             secureTextEntry={true}
             value={password}
             onChangeText={(password) => setPassword(password)}
@@ -76,10 +78,10 @@ export const Login = ({ navigation }) => {
           <TouchableOpacity style={styles.loginBtn} onPress={onLoggedIn}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ForgotPassWord")}
-          >
-            <Text style={styles.forgot_button}>Forgotten Account?</Text>
+        </View>
+        <View style={styles.forgotSection}>
+          <TouchableOpacity onPress={onForgotPassword}>
+            <Text style={styles.forgotButton}>Forgotten Account?</Text>
           </TouchableOpacity>
         </View>
       </View>

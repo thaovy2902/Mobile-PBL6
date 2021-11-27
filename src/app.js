@@ -12,10 +12,13 @@ import { Leave } from "./containers/Leave";
 import { Employee } from "./containers/Employee";
 import { LunchCalendar } from "./containers/LunchCalendar";
 import { LunchCalendarOptions } from "./containers/LunchCalendarOptions";
+import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  LogBox.ignoreLogs(['Warning: ...']);
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

@@ -12,18 +12,19 @@ export const SearchTextBar = () => {
   return (
     <VStack
       space={5}
-      width="100%"
+      width="60%"
       divider={
         <Box px="2">
           <Divider />
         </Box>
       }>
-      <VStack width="100%" marginTop={1} space={5} alignItems="center">
+      <VStack width="100%" space={5}>
         <Input
           placeholder="search by name"
           type="date"
           variant="filled"
           width="100%"
+          height={10}
           bg="gray.100"
           borderRadius="10"
           py="1"

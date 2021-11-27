@@ -29,6 +29,7 @@ export default StyleSheet.create({
     marginLeft: 40,
     alignItems: 'center',
     borderRadius: 24,
+    borderColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -44,15 +45,17 @@ export default StyleSheet.create({
     fontStyle: 'normal',
     fontSize: SCREEN_WIDTH * 0.04,
   },
-
-  forgot_button: {
+  forgotSection: {
+    margin: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  forgotButton: {
     fontSize: SCREEN_WIDTH * 0.04,
     color: '#fff',
   },
-
   loginBtn: {
     width: '40%',
-    height: '33%',
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
@@ -71,6 +74,7 @@ export default StyleSheet.create({
   loginButtonSection: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
   },
   full: {
     textAlign: 'center',
@@ -93,7 +97,7 @@ export default StyleSheet.create({
   welcome: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: SCREEN_WIDTH * 0.07,
+    fontSize: 22,
     fontWeight: 'bold',
     fontStyle: 'normal',
     width: '100%',
@@ -102,11 +106,13 @@ export default StyleSheet.create({
   loginText: {
     color: '#4da4e0',
     fontWeight: 'bold',
-    fontSize: SCREEN_WIDTH * 0.06,
+    fontSize: 18,
+    paddingBottom: 5,
+    paddingTop: 5,
   },
   errorText: {
     textAlign: 'center',
     color: '#dc3545',
-    fontSize: SCREEN_WIDTH * 0.04,
+    fontSize: 14,
   }
 });

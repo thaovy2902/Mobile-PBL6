@@ -5,7 +5,7 @@ export const SearchDateBar = () => {
   const [date, setDate] = useState(new Date());
   return (
     <DatePicker
-        style={{width: 200, marginTop: 10, backGroundColor: '#ffffff'}}
+        style={{width: 200, backGroundColor: '#ffffff'}}
         mode="date"
         date={date}
         placeholder="search by date"
@@ -16,10 +16,9 @@ export const SearchDateBar = () => {
             position: 'absolute',
             left: 0,
             top: 4,
-            marginLeft: 10
           },
           dateInput: {
-            marginLeft: 46
+            marginLeft: 50
           }
         }}
         onDateChange={(date) => setDate(date) }
