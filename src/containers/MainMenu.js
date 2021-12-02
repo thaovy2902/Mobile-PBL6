@@ -55,7 +55,7 @@ export const MainMenu = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-      <SpeedDial
+      {/* <SpeedDial
         isOpen={open}
         icon={{ name: "add", color: "#4da4e0" }}
         openIcon={{ name: "close", color: "#4da4e0" }}
@@ -69,7 +69,7 @@ export const MainMenu = ({ navigation }) => {
           title="Logout"
           onPress={() => navigation.navigate("Login")}
         />
-      </SpeedDial>
+      </SpeedDial> */}
     </View>
   );
 };

@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ForgotPassWord } from "./containers/ForgotPassWord";
-import { Login } from "./containers/Login";
+import Login from "./containers/Login";
 import { MainMenu } from "./containers/MainMenu";
 import { CompanyCalendar } from "./containers/CompanyCalendar";
 import { CalendarDetail } from "./containers/CalendarDetail";
