@@ -10,27 +10,27 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer: {
-    marginBottom: SCREEN_HEIGHT*0.1,
-    marginTop:-SCREEN_HEIGHT*0.1,
+    marginBottom: SCREEN_HEIGHT * 0.1,
+    marginTop: -SCREEN_HEIGHT * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
-    width: SCREEN_WIDTH*0.5,
-    height: SCREEN_WIDTH*0.3,
+    width: SCREEN_WIDTH * 0.5,
+    height: SCREEN_WIDTH * 0.3,
   },
   full: {
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: -20,
   },
   slogan: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: SCREEN_WIDTH*0.04,
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: SCREEN_WIDTH * 0.04,
   },
   frame: {
     opacity: 0.9,
@@ -69,5 +69,13 @@ export default StyleSheet.create({
   frameSetting: {
     alignSelf: 'flex-end',
     marginRight: SCREEN_WIDTH * 0.12,
+  },
+  subMenuItem: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  subMenuItemText: {
+    fontSize: 14,
+    color: '#4da4e0',
   },
 });

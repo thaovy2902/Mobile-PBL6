@@ -28,6 +28,7 @@ export default StyleSheet.create({
     marginLeft: 40,
     alignItems: 'center',
     borderRadius: 24,
+    borderColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -45,7 +46,7 @@ export default StyleSheet.create({
   },
 
   please: {
-    fontSize: SCREEN_WIDTH * 0.04,
+    fontSize: 14,
     color: '#fff',
     width: '80%',
     marginLeft: 40,
@@ -97,7 +98,7 @@ export default StyleSheet.create({
   welcome: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: SCREEN_WIDTH * 0.07,
+    fontSize: 22,
     fontWeight: 'bold',
     fontStyle: 'normal',
     width: '100%',

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, CheckBox } from 'react-native';
+
+import { View, CheckBox } from 'react-native';
 import { Modal, Button, FormControl, Input, Select } from 'native-base';
 import { RequestListForm } from '../components/RequestListForm';
 import { SearchDateBar } from '../components/SearchDateBar';
+import { OptionsButton } from '../components/OptionsButton';
 import styles from '../styles/LunchSchedule';
 
 export const LunchSchedule = () => {
@@ -16,16 +18,16 @@ export const LunchSchedule = () => {
   widthArr = [180, 120, 70];
 
   const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
   return (
     <>
       <View style={styles.frameHeader}>
-        <SearchDateBar />
-        <TouchableOpacity
-          style={styles.detailBtn}
-          onPress={() => setShowModal(true)}
-        >
-          <Text style={styles.detailText}>Add</Text>
-        </TouchableOpacity>
+        <View style={styles.searchFrame}>
+          <SearchDateBar />
+          <OptionsButton title='Add' openModal={openModal} />
+        </View>
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <Modal.Content maxWidth='500px'>
             <Modal.CloseButton />
@@ -51,7 +53,7 @@ export const LunchSchedule = () => {
                 <FormControl.Label>Note</FormControl.Label>
                 <Input />
               </FormControl>
-              <FormControl mt='3'>
+              <FormControl mt='3' style={{ flexDirection: 'row' }}>
                 <FormControl.Label>Veggie</FormControl.Label>
                 <CheckBox />
               </FormControl>
@@ -72,7 +74,7 @@ export const LunchSchedule = () => {
                     setShowModal(false);
                   }}
                 >
-                  Send
+                  Add
                 </Button>
               </Button.Group>
             </Modal.Footer>

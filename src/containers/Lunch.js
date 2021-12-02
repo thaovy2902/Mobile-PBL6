@@ -1,24 +1,14 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  Animated,
-  Pressable,
-} from 'react-native';
+
+import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { NativeBaseProvider, Box, Text, Center } from 'native-base';
+import { NativeBaseProvider, Box } from 'native-base';
 import HeaderBar from '../components/Header';
 import { LunchSchedule } from './LunchSchedule';
 import { LunchProvider } from './LunchProvider';
 import { LunchCalendar } from './LunchCalendar';
-import { LunchCalendarOptions } from './LunchCalendarOptions';
 
 const initialLayout = { width: Dimensions.get('window').width };
-
-
 
 export const Lunch = ({ navigation }) => {
   const renderScene = SceneMap({

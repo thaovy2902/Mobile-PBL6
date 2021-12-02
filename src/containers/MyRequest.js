@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
+
 import { View } from 'react-native';
 import { Modal, Button, FormControl, Input, Select } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { RequestListForm } from '../components/RequestListForm';
 import { SearchDateBar } from '../components/SearchDateBar';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export const MyRequest = ({}) => {
   tableHead = ['List Date Off', 'Type Off', 'Reason'];
@@ -109,7 +110,7 @@ export const MyRequest = ({}) => {
                     setShowModal(false);
                   }}
                 >
-                  Send
+                  Add
                 </Button>
               </Button.Group>
             </Modal.Footer>

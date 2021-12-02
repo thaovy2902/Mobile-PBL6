@@ -1,18 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
+
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {
-  VStack,
-  FormControl,
-  Input,
-  NativeBaseProvider,
-  Center,
-  Modal,
-  Button,
-  Select,
-  Checkbox,
-} from 'native-base';
+import { FormControl, Input, Modal, Button, Checkbox } from 'native-base';
 import { LeaveTypesList } from '../components/LeaveTypesList';
 
 export const LeaveTypesGroup = () => {

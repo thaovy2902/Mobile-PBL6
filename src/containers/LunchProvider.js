@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, CheckBox } from 'react-native';
-import { Modal, Button, FormControl, Input, Select } from 'native-base';
+
+import { View, CheckBox } from 'react-native';
+import { Modal, Button, FormControl, Input } from 'native-base';
 import { RequestListForm } from '../components/RequestListForm';
 import { SearchTextBar } from '../components/SearchTextBar';
+import { OptionsButton } from '../components/OptionsButton';
 import styles from '../styles/LunchProvider';
 
 export const LunchProvider = () => {
@@ -16,16 +18,17 @@ export const LunchProvider = () => {
   widthArr = [180, 120, 70];
 
   const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
   return (
     <>
       <View style={styles.frameHeader}>
-        <SearchTextBar />
-        <TouchableOpacity
-          style={styles.detailBtn}
-          onPress={() => setShowModal(true)}
-        >
-          <Text style={styles.detailText}>Add</Text>
-        </TouchableOpacity>
+        <View style={styles.searchFrame}>
+          <SearchTextBar />
+          <OptionsButton title='Add' openModal={openModal} />
+        </View>
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <Modal.Content maxWidth='500px'>
             <Modal.CloseButton />
@@ -51,7 +54,7 @@ export const LunchProvider = () => {
                 <FormControl.Label>Link</FormControl.Label>
                 <Input />
               </FormControl>
-              <FormControl mt='3'>
+              <FormControl mt='3' style={{ flexDirection: 'row' }}>
                 <FormControl.Label>Veggie</FormControl.Label>
                 <CheckBox />
               </FormControl>
@@ -72,7 +75,7 @@ export const LunchProvider = () => {
                     setShowModal(false);
                   }}
                 >
-                  Send
+                  Add
                 </Button>
               </Button.Group>
             </Modal.Footer>

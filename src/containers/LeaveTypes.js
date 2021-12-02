@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
+
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
-  VStack,
   FormControl,
   Input,
-  NativeBaseProvider,
-  Center,
   Modal,
   Button,
   Select,
@@ -31,7 +29,7 @@ export const LeaveTypes = () => {
     ['Paternity Leave', '5', 'Nghỉ sinh con, dành cho bố'],
     ['Others', '5', 'Trường hợp này nhân viên nhập lý do nghỉ'],
   ];
-  widthArr= [140, 50, 180];
+  widthArr = [140, 50, 180];
 
   const validate = () => {
     if (formData.name === undefined) {

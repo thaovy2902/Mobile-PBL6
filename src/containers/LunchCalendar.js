@@ -1,8 +1,8 @@
 import React from 'react';
+
 import { Text, View, TouchableOpacity } from 'react-native';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { Agenda } from 'react-native-calendars';
 import styles from '../styles/CompanyCalendar';
-import HeaderBar from '../components/Header';
 
 export const LunchCalendar = ({ navigation }) => {
   const items = {

@@ -1,33 +1,40 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Table, TableWrapper, Row } from 'react-native-table-component';
+import React from 'react';
 
-export const RequestListForm = ({tableHead, tableData, widthArr}) => {
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { Table, Row } from 'react-native-table-component';
+
+export const RequestListForm = ({ tableHead, tableData, widthArr }) => {
   return (
     <View style={styles.container}>
-    <ScrollView horizontal={true}>
-      <View>
-        <Table borderStyle={{borderWidth: 1, borderColor: '#4da4e0'}}>
-          <Row data={tableHead} widthArr={widthArr} style={styles.header} textStyle={styles.text}/>
-        </Table>
-        <ScrollView style={styles.dataWrapper}>
-          <Table borderStyle={{borderWidth: 1, borderColor: '#4da4e0'}}>
-            {
-              tableData.map((rowData, index) => (
+      <ScrollView horizontal={true}>
+        <View>
+          <Table borderStyle={{ borderWidth: 1, borderColor: '#4da4e0' }}>
+            <Row
+              data={tableHead}
+              widthArr={widthArr}
+              style={styles.header}
+              textStyle={styles.text}
+            />
+          </Table>
+          <ScrollView style={styles.dataWrapper}>
+            <Table borderStyle={{ borderWidth: 1, borderColor: '#4da4e0' }}>
+              {tableData.map((rowData, index) => (
                 <Row
                   key={index}
                   data={rowData}
                   widthArr={widthArr}
-                  style={[styles.row, index%2 && {backgroundColor: '#ffffff'}]}
+                  style={[
+                    styles.row,
+                    index % 2 && { backgroundColor: '#ffffff' },
+                  ]}
                   textStyle={styles.text}
                 />
-              ))
-            }
-          </Table>
-        </ScrollView>
-      </View>
-    </ScrollView>
-  </View>
+              ))}
+            </Table>
+          </ScrollView>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -36,5 +43,5 @@ const styles = StyleSheet.create({
   header: { height: 50, backgroundColor: '#4da4e0' },
   text: { textAlign: 'center', fontWeight: '100', fontSize: 10 },
   dataWrapper: { marginTop: -1 },
-  row: { height: 40, backgroundColor: '#ffffff' }
+  row: { height: 40, backgroundColor: '#ffffff' },
 });

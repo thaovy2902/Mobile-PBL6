@@ -1,15 +1,8 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  Animated,
-  Pressable,
-} from 'react-native';
+
+import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { NativeBaseProvider, Box, Text, Center } from 'native-base';
+import { NativeBaseProvider, Box } from 'native-base';
 import HeaderBar from '../components/Header';
 import { LeaveTypes } from './LeaveTypes';
 import { LeaveTypesGroup } from './LeaveTypesGroup';

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
-import styles from "../styles/Login";
-import { connect } from "react-redux";
-import * as actions from "../redux/actions/authAction";
+import React, { useState } from 'react';
+
+import { connect } from 'react-redux';
+
+import * as actions from '../redux/actions/authAction';
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import styles from '../styles/Login';
 
 const Login = ({ navigation, handleLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
+  const onForgotPassword = () => {
+    navigation.navigate('ForgotPassWord');
+  };
   const onLoggedIn = async () => {
     // const formBody = new FormData();
     // formBody.append("username", email);
@@ -38,7 +43,7 @@ const Login = ({ navigation, handleLogin }) => {
 
     // props.handleLogin(email, password);
     // handleLogin("superadmin@gmail.com", "Abc@12345");
-    navigation.navigate("MainMenu");
+    navigation.navigate('MainMenu');
   };
 
   return (
@@ -46,8 +51,8 @@ const Login = ({ navigation, handleLogin }) => {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          resizeMode={"contain"}
-          source={require("../assets/logo_white.png")}
+          resizeMode={'contain'}
+          source={require('../assets/logo_white.png')}
         />
         <Text style={styles.full}>FULL HOPE</Text>
         <Text style={styles.slogan}>Try hard with more hope!</Text>
@@ -57,8 +62,8 @@ const Login = ({ navigation, handleLogin }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder="Email Address"
-            placeholderTextColor="#868686"
+            placeholder='Email Address'
+            placeholderTextColor='#868686'
             value={email}
             onChangeText={(email) => setEmail(email)}
           />
@@ -67,8 +72,8 @@ const Login = ({ navigation, handleLogin }) => {
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
-            placeholder="Password"
-            placeholderTextColor="#868686"
+            placeholder='Password'
+            placeholderTextColor='#868686'
             secureTextEntry={true}
             value={password}
             onChangeText={(password) => setPassword(password)}
@@ -81,10 +86,10 @@ const Login = ({ navigation, handleLogin }) => {
           <TouchableOpacity style={styles.loginBtn} onPress={onLoggedIn}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ForgotPassWord")}
-          >
-            <Text style={styles.forgot_button}>Forgotten Account?</Text>
+        </View>
+        <View style={styles.forgotSection}>
+          <TouchableOpacity onPress={onForgotPassword}>
+            <Text style={styles.forgotButton}>Forgotten Account?</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -92,7 +97,7 @@ const Login = ({ navigation, handleLogin }) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   return {
     // manageQuestion: state.manageQuestion,
     // tempQuestion: state.tempQuestion,

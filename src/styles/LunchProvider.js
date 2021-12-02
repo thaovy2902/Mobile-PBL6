@@ -1,24 +1,16 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   frameHeader: {
-    display: "flex",
-    backgroundColor: "#ffffff"
-  },  
-  detailBtn: {
-    width: SCREEN_WIDTH * 0.2,
-    height: SCREEN_WIDTH * 0.1,
-    backgroundColor: '#4da4e0',
-    borderRadius: 5,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    marginTop: 10
+    display: 'flex',
+    backgroundColor: '#ffffff',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
-  detailText: {
-    color: 'white',
-    fontSize: 14,
-    textAlign: 'center',
-  }
+  searchFrame: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
 });
