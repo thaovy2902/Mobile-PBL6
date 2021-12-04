@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 
-import * as actions from '../redux/actions/authAction';
+import * as actions from '../../redux/actions/authAction';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import styles from '../styles/Login';
+import styles from '../../styles/Login';
 
 const Login = ({ navigation, handleLogin }) => {
   const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ const Login = ({ navigation, handleLogin }) => {
         <Image
           style={styles.image}
           resizeMode={'contain'}
-          source={require('../assets/logo_white.png')}
+          source={require('../../assets/logo_white.png')}
         />
         <Text style={styles.full}>FULL HOPE</Text>
         <Text style={styles.slogan}>Try hard with more hope!</Text>

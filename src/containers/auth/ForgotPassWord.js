@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import styles from '../styles/ForgotPassword';
+import styles from '../../styles/ForgotPassword';
 
 export const ForgotPassWord = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ export const ForgotPassWord = ({ navigation }) => {
         <Image
           style={styles.image}
           resizeMode={'contain'}
-          source={require('../assets/logo_white.png')}
+          source={require('../../assets/logo_white.png')}
         />
         <Text style={styles.full}>FULL HOPE</Text>
         <Text style={styles.slogan}>Try hard with more hope!</Text>

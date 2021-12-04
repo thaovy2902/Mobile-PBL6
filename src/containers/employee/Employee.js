@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { View } from 'react-native';
 import { FormControl, Input, NativeBaseProvider, Select } from 'native-base';
-import styles from '../styles/Employee';
-import { RequestListForm } from '../components/RequestListForm';
-import HeaderBar from '../components/Header';
+import { RequestListForm } from '../../components/RequestListForm';
+import HeaderBar from '../../components/Header';
+import styles from '../../styles/Employee';
 
 export const Employee = ({ navigation }) => {
   tableHead = ['Name', 'Position', 'Team'];

@@ -3,25 +3,25 @@ import * as React from 'react';
 import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
-import HeaderBar from '../components/Header';
-import { GeneralProfile } from './GeneralProfile';
-import { RemainLeave } from './RemainLeave';
-import { PersonalEducation } from './PersonalEducation';
+import HeaderBar from '../../../components/Header';
+import { MyRequest } from './MyRequest';
+import { ApprovalRequest } from './ApprovalRequest';
+import { OfficeRequest } from './OfficeRequest';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
-  first: GeneralProfile,
-  second: RemainLeave,
-  third: PersonalEducation,
+  first: MyRequest,
+  second: ApprovalRequest,
+  third: OfficeRequest,
 });
 
-export const PersonalInformation = ({ navigation }) => {
+export const Request = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'General Profile' },
-    { key: 'second', title: 'Remain Leave' },
-    { key: 'third', title: 'Education' },
+    { key: 'first', title: 'My Request' },
+    { key: 'second', title: 'Approval' },
+    { key: 'third', title: 'Office Request' },
   ]);
 
   const renderTabBar = (props) => {
@@ -66,7 +66,7 @@ export const PersonalInformation = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title='Personal Information' navigation={navigation} />
+      <HeaderBar title='Request' navigation={navigation} />
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

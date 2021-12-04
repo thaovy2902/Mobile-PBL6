@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { RequestListForm } from '../components/RequestListForm';
+import { RequestListForm } from '../../../components/RequestListForm';
 
 export const OfficeRequest = () => {
   tableHead = ['Employee', 'List Date Off', 'Type Off'];

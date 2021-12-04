@@ -3,24 +3,22 @@ import * as React from 'react';
 import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
-import HeaderBar from '../components/Header';
-import { LunchSchedule } from './LunchSchedule';
-import { LunchProvider } from './LunchProvider';
-import { LunchCalendar } from './LunchCalendar';
+import HeaderBar from '../../../components/Header';
+import { LeaveTypes } from './LeaveTypes';
+import { LeaveTypesGroup } from './LeaveTypesGroup';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-export const Lunch = ({ navigation }) => {
-  const renderScene = SceneMap({
-    first: () => <LunchCalendar navigation={navigation} />,
-    second: LunchSchedule,
-    third: LunchProvider,
-  });
+const renderScene = SceneMap({
+  first: LeaveTypes,
+  second: LeaveTypesGroup,
+});
+
+export const Leave = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'Meal' },
-    { key: 'second', title: 'Schedule' },
-    { key: 'third', title: 'Provider' },
+    { key: 'first', title: 'Leave Types' },
+    { key: 'second', title: 'Group Leave Types' },
   ]);
 
   const renderTabBar = (props) => {
@@ -65,7 +63,7 @@ export const Lunch = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title='Lunch Management' navigation={navigation}></HeaderBar>
+      <HeaderBar title='Leave Types' navigation={navigation}></HeaderBar>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

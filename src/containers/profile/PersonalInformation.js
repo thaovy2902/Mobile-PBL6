@@ -3,22 +3,25 @@ import * as React from 'react';
 import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
-import HeaderBar from '../components/Header';
-import { LeaveTypes } from './LeaveTypes';
-import { LeaveTypesGroup } from './LeaveTypesGroup';
+import HeaderBar from '../../components/Header';
+import { GeneralProfile } from './GeneralProfile';
+import { RemainLeave } from './RemainLeave';
+import { PersonalEducation } from './PersonalEducation';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
-  first: LeaveTypes,
-  second: LeaveTypesGroup,
+  first: GeneralProfile,
+  second: RemainLeave,
+  third: PersonalEducation,
 });
 
-export const Leave = ({ navigation }) => {
+export const PersonalInformation = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'Leave Types' },
-    { key: 'second', title: 'Group Leave Types' },
+    { key: 'first', title: 'General Profile' },
+    { key: 'second', title: 'Remain Leave' },
+    { key: 'third', title: 'Education' },
   ]);
 
   const renderTabBar = (props) => {
@@ -63,7 +66,7 @@ export const Leave = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title='Leave Types' navigation={navigation}></HeaderBar>
+      <HeaderBar title='Personal Information' navigation={navigation} />
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

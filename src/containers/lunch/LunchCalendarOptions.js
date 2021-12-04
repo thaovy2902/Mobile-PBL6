@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox, NativeBaseProvider } from 'native-base';
-import styles from '../styles/CalenderDetail';
+import styles from '../../styles/CalenderDetail';
 
 export const LunchCalendarOptions = ({ navigation }) => {
   return (

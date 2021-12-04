@@ -3,25 +3,24 @@ import * as React from 'react';
 import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
-import HeaderBar from '../components/Header';
-import { MyRequest } from './MyRequest';
-import { ApprovalRequest } from './ApprovalRequest';
-import { OfficeRequest } from './OfficeRequest';
+import HeaderBar from '../../components/Header';
+import { LunchSchedule } from './LunchSchedule';
+import { LunchProvider } from './LunchProvider';
+import { LunchCalendar } from './LunchCalendar';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-const renderScene = SceneMap({
-  first: MyRequest,
-  second: ApprovalRequest,
-  third: OfficeRequest,
-});
-
-export const Request = ({ navigation }) => {
+export const Lunch = ({ navigation }) => {
+  const renderScene = SceneMap({
+    first: () => <LunchCalendar navigation={navigation} />,
+    second: LunchSchedule,
+    third: LunchProvider,
+  });
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'My Request' },
-    { key: 'second', title: 'Approval' },
-    { key: 'third', title: 'Office Request' },
+    { key: 'first', title: 'Meal' },
+    { key: 'second', title: 'Schedule' },
+    { key: 'third', title: 'Provider' },
   ]);
 
   const renderTabBar = (props) => {
@@ -66,7 +65,7 @@ export const Request = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title='Request' navigation={navigation} />
+      <HeaderBar title='Lunch Management' navigation={navigation}></HeaderBar>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

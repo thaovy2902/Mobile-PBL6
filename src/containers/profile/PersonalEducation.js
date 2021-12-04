@@ -2,11 +2,16 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { View } from 'react-native';
-import { Modal, Button, FormControl, Input, Text } from 'native-base';
-import { OptionsButton } from '../components/OptionsButton';
-import styles from '../styles/PersonalInformation';
+import { Modal, Button, FormControl, Input } from 'native-base';
+import { OptionsButton } from '../../components/OptionsButton';
+import { RequestListForm } from '../../components/RequestListForm';
+import styles from '../../styles/PersonalInformation';
 
 export const PersonalEducation = ({}) => {
+  tableHead = ['School', 'Degree', 'Major', 'Graduation in', 'Notes', 'Action'];
+  tableData = [['DUT', 'Bachelor of Science', 'IT', '2022', '', '']];
+  widthArr = [100, 120, 70, 120, 100, 80];
+
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
@@ -16,47 +21,34 @@ export const PersonalEducation = ({}) => {
       <View style={styles.optionFrame}>
         <OptionsButton title='Add' openModal={openModal} />
       </View>
-      <View style={styles.formFrame}>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Year:</Text>
-          <Text style={styles.contentText}>2021</Text>
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Remain Last Year:</Text>
-          <Text style={styles.contentText}>0</Text>
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Total This Year:</Text>
-          <Text style={styles.contentText}>12</Text>
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Taken:</Text>
-          <Text style={styles.contentText}>0</Text>
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Left:</Text>
-          <Text style={styles.contentText}>12</Text>
-        </View>
-      </View>
+      <RequestListForm
+        tableData={tableData}
+        tableHead={tableHead}
+        widthArr={widthArr}
+      />
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth='500px'>
           <Modal.CloseButton />
           <Modal.Header>Add New</Modal.Header>
           <Modal.Body>
-            <FormControl>
-              <FormControl.Label>Year</FormControl.Label>
+            <FormControl isRequired>
+              <FormControl.Label>School Name</FormControl.Label>
+              <Input />
+            </FormControl>
+            <FormControl mt='3' isRequired>
+              <FormControl.Label>Degree</FormControl.Label>
+              <Input />
+            </FormControl>
+            <FormControl mt='3' isRequired>
+              <FormControl.Label>Major</FormControl.Label>
               <Input />
             </FormControl>
             <FormControl mt='3'>
-              <FormControl.Label>Remain Last Year</FormControl.Label>
+              <FormControl.Label>Graduated Year</FormControl.Label>
               <Input />
             </FormControl>
             <FormControl mt='3'>
-              <FormControl.Label>Total This Year</FormControl.Label>
-              <Input />
-            </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Left</FormControl.Label>
+              <FormControl.Label>Notes</FormControl.Label>
               <Input />
             </FormControl>
           </Modal.Body>

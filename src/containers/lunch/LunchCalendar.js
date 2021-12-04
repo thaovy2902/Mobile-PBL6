@@ -1,39 +1,36 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import styles from '../styles/CompanyCalendar';
-import HeaderBar from '../components/Header';
+import styles from '../../styles/CompanyCalendar';
 
-export const CompanyCalendar = ({ navigation }) => {
+export const LunchCalendar = ({ navigation }) => {
   const items = {
-    '2021-11-22': [{ name: 'Days off: 1' }],
-    '2021-11-23': [{ name: 'Lunch: 2' }],
+    '2021-11-22': [{ name: 'Lunch' }],
+    '2021-11-23': [{ name: 'Lunch' }],
     '2021-11-24': [],
-    '2021-11-25': [{ name: 'Lunch: 4' }, { name: 'Veggie Lunch: 2' }],
-    '2021-11-26': [{ name: 'Days off: 2' }, { name: 'Veggie Lunch: 2' }],
+    '2021-11-25': [],
+    '2021-11-26': [{ name: 'Lunch' }],
   };
-  const renderItem = useCallback((item) => {
+  const renderItem = (item) => {
     return (
       <TouchableOpacity style={[styles.item]} onPress={() => alert(item.name)}>
         <Text>{item.name}</Text>
       </TouchableOpacity>
     );
-  });
-  const renderEmptyDate = useCallback(() => {
+  };
+  const renderEmptyDate = () => {
     return <View style={styles.item}></View>;
-  });
+  };
   return (
-    // <Text>abc</Text>
     <View style={styles.container}>
-      <HeaderBar title='Company Calendar' navigation={navigation}></HeaderBar>
       <View style={styles.frame}>
         <TouchableOpacity style={styles.detailBtn}>
           <Text
             style={styles.detailText}
-            onPress={() => navigation.navigate('CalendarDetail')}
+            onPress={() => navigation.navigate('LunchCalendarOptions')}
           >
-            Detail
+            Options
           </Text>
         </TouchableOpacity>
       </View>
