@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  frameHeader: {
-    display: 'flex',
-    backgroundColor: '#ffffff',
-    paddingLeft: 10,
+  employeeSearch: {
+    backgroundColor: 'white',
     paddingRight: 20,
+    paddingLeft: 20,
   },
-  searchFrame: {
+  employeeSearchCol6: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 10,
+  },
+  searchCol6Item: {
+    marginRight: 0,
+    width: '48%',
   },
 });

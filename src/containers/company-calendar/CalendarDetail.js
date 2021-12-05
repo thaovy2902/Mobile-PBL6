@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { Text, View, TouchableOpacity } from 'react-native';
-import styles from '../styles/CalenderDetail';
+import styles from '../../styles/CalenderDetail';
 
 export const CalendarDetail = ({ navigation }) => {
   return (

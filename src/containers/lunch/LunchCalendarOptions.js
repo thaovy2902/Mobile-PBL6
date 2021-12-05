@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox, NativeBaseProvider } from 'native-base';
-import styles from '../styles/CalenderDetail';
+import styles from '../../styles/CalenderDetail';
 
 export const LunchCalendarOptions = ({ navigation }) => {
   return (
@@ -10,19 +11,27 @@ export const LunchCalendarOptions = ({ navigation }) => {
         <View style={[styles.calendarDetail]}>
           <View style={styles.calendarType}>
             <TouchableOpacity>
-              <Text style={[styles.calendarTitle, styles.calendarRedTitle]}>Set Lunch</Text>
+              <Text style={[styles.calendarTitle, styles.calendarRedTitle]}>
+                Set Lunch
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={[styles.calendarTitle, styles.calendarOrangeTitle]}>Cancel Lunch</Text>
+              <Text style={[styles.calendarTitle, styles.calendarOrangeTitle]}>
+                Cancel Lunch
+              </Text>
             </TouchableOpacity>
             <View style={styles.calendarLegend}>
               <View style={styles.calendarLegendItem}>
-                <Checkbox style={[styles.calendarLegendBox, styles.outlineBlueBox]}>
+                <Checkbox
+                  style={[styles.calendarLegendBox, styles.outlineBlueBox]}
+                >
                   <Text style={styles.calendarLegendText}>Auto Booking</Text>
                 </Checkbox>
               </View>
               <View style={styles.calendarLegendItem}>
-                <Checkbox style={[styles.calendarLegendBox, styles.outlineGreenBox]}>
+                <Checkbox
+                  style={[styles.calendarLegendBox, styles.outlineGreenBox]}
+                >
                   <Text style={styles.calendarLegendText}>Auto Veggie</Text>
                 </Checkbox>
               </View>

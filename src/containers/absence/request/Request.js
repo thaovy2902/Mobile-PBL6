@@ -1,31 +1,27 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  Animated,
-  Pressable,
-} from 'react-native';
+
+import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { NativeBaseProvider, Box, Text, Center } from 'native-base';
-import HeaderBar from '../components/Header';
-import { LeaveTypes } from './LeaveTypes';
-import { LeaveTypesGroup } from './LeaveTypesGroup';
+import { NativeBaseProvider, Box } from 'native-base';
+import HeaderBar from '../../../components/Header';
+import { MyRequest } from './MyRequest';
+import { ApprovalRequest } from './ApprovalRequest';
+import { OfficeRequest } from './OfficeRequest';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
-  first: LeaveTypes,
-  second: LeaveTypesGroup,
+  first: MyRequest,
+  second: ApprovalRequest,
+  third: OfficeRequest,
 });
 
-export const Leave = ({ navigation }) => {
+export const Request = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'Leave Types' },
-    { key: 'second', title: 'Group Leave Types' },
+    { key: 'first', title: 'My Request' },
+    { key: 'second', title: 'Approval' },
+    { key: 'third', title: 'Office Request' },
   ]);
 
   const renderTabBar = (props) => {
@@ -70,7 +66,7 @@ export const Leave = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderBar title='Leave Types' navigation={navigation}></HeaderBar>
+      <HeaderBar title='Request' navigation={navigation} />
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
