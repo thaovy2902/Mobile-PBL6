@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/Login";
+import { connect } from "react-redux";
+import * as actions from "../redux/actions/authAction";
 
-export const Login = ({ navigation }) => {
+const Login = ({ navigation, handleLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -32,8 +34,11 @@ export const Login = ({ navigation }) => {
     //       setError(true);
     //     }
     //   });
-    navigation.navigate("LoginSuccess");
+    // navigation.navigate("LoginSuccess");
 
+    // props.handleLogin(email, password);
+    // handleLogin("superadmin@gmail.com", "Abc@12345");
+    navigation.navigate("MainMenu");
   };
 
   return (
@@ -86,3 +91,20 @@ export const Login = ({ navigation }) => {
     </View>
   );
 };
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    // manageQuestion: state.manageQuestion,
+    // tempQuestion: state.tempQuestion,
+    // loading: state.loading,
+  };
+};
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    handleLogin: (email, password) => {
+      dispatch(actions.fetchLogin(email, password));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

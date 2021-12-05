@@ -1,22 +1,25 @@
 {
   "main": "index.js",
   "scripts": {
-    "start": "expo start --port 8000",
+    "start": "expo start --port 8080",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.13",
     "@react-navigation/drawer": "*",
     "@react-navigation/native": "6.0.0",
     "@react-navigation/native-stack": "^6.2.5",
     "@react-navigation/stack": "*",
     "@types/react": "*",
     "@types/react-native": "*",
+    "axios": "^0.24.0",
     "expo": "~42.0.1",
     "expo-constants": "~11.0.2",
     "expo-status-bar": "~1.0.4",
+    "jwt-decode": "^3.1.2",
     "native-base": "^3.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -25,7 +28,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
-    "react-native-pager-view": "^5.4.9",
+    "react-native-pager-view": "5.0.12",
     "react-native-paper": "3.6.0",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
@@ -38,6 +41,7 @@
     "react-navigation": "*",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.0"
   },
   "devDependencies": {

@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import permissionsReducer from './permissionsReducer'
-import productsReducer from './productsReducer'
+import authReducer from './authReducer'
 
 const rootReducer = combineReducers({
-  products: productsReducer,
-  permissions: permissionsReducer
+  authReducer: authReducer
 })
 
 export default rootReducer
