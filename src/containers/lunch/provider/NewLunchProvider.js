@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import axiosConfig from '../../../../core/axiosConfig';
+import axiosConfig from '../../../core/axiosConfig';
 
 import {
   Button,
@@ -11,9 +11,12 @@ import {
   Checkbox,
 } from 'native-base';
 
-export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
-  const [newData, setNewData] = useState({ is_count: true });
-  const [leaveTypesGroup, setLeaveTypesGroup] = useState(null);
+export const NewLunchProvider = ({
+  isOpenModal,
+  closeModal,
+  handleIsRefresh,
+}) => {
+  const [newData, setNewData] = useState({ has_vegetarian: false });
   const [hasError, setHasError] = useState(false);
 
   const validate = () => {
@@ -27,10 +30,7 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
     validate() &&
       (async () => {
         try {
-          const response = await axiosConfig.post(
-            'workday/admin/leave-types',
-            newData
-          );
+          const response = await axiosConfig.post('provider/', newData);
           handleIsRefresh();
           setNewData({});
           closeModal();
@@ -40,28 +40,14 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
         }
       })();
   };
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axiosConfig.get(
-          'workday/admin/group-leave-types'
-        );
-        setLeaveTypesGroup(response.data);
-      } catch (error) {
-        setHasError(true);
-      }
-    })();
-  }, []);
-
   return (
     <>
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         <Modal.Content maxWidth='500px'>
           <Modal.CloseButton />
-          <Modal.Header>New Leave Types</Modal.Header>
+          <Modal.Header>New Provider</Modal.Header>
           <Modal.Body>
-            <FormControl isRequired>
+            <FormControl isRequire>
               <FormControl.Label _text={{ bold: true }}>Name</FormControl.Label>
               <Input
                 onChangeText={(value) =>
@@ -69,61 +55,56 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
                 }
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Group
-              </FormControl.Label>
-              <Select
-                minWidth='200'
-                accessibilityLabel='Select'
-                placeholder='Select'
-                mt={1}
-                fontSize='md'
-                onValueChange={(value) =>
-                  setNewData({ ...newData, leave_type_group: value })
-                }
-              >
-                {leaveTypesGroup &&
-                  leaveTypesGroup?.map((item) => (
-                    <Select.Item
-                      label={item?.name}
-                      value={item?.id}
-                      key={item?.id}
-                    />
-                  ))}
-              </Select>
-            </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>
-                Limit Days
+                Phone
               </FormControl.Label>
               <Input
                 keyboardType='numeric'
                 onChangeText={(value) =>
-                  setNewData({ ...newData, days: value })
+                  setNewData({ ...newData, phone: value })
                 }
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Description
+                Budget
+              </FormControl.Label>
+              <Input
+                keyboardType='numeric'
+                onChangeText={(value) =>
+                  setNewData({ ...newData, budget: value })
+                }
+              />
+            </FormControl>
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>
+                Address
               </FormControl.Label>
               <Input
                 onChangeText={(value) =>
-                  setNewData({ ...newData, descriptions: value })
+                  setNewData({ ...newData, address: value })
                 }
               />
             </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Is Count?</FormControl.Label>
-              <Checkbox
-                isChecked={newData?.is_count}
-                onChange={(value) =>
-                  setNewData({ ...newData, is_count: value })
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>Link</FormControl.Label>
+              <Input
+                onChangeText={(value) =>
+                  setNewData({ ...newData, link: value })
                 }
-              >
-                Count Day Leave
-              </Checkbox>
+              />
+            </FormControl>
+            <FormControl mt='3' style={{ flexDirection: 'row' }}>
+              <FormControl.Label _text={{ bold: true }}>
+                Veggie
+              </FormControl.Label>
+              <Checkbox
+                isChecked={newData?.has_vegetarian}
+                onChange={(value) =>
+                  setNewData({ ...newData, has_vegetarian: value })
+                }
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>

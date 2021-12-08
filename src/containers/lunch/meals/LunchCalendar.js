@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import styles from '../../styles/CompanyCalendar';
+import styles from '../../../styles/CompanyCalendar';
 
 export const LunchCalendar = ({ navigation }) => {
   const items = {

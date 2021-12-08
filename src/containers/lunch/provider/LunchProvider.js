@@ -4,15 +4,16 @@ import { useState, useEffect } from 'react';
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Button } from 'native-base';
+import { Button, Checkbox } from 'native-base';
 import axiosConfig from '../../../core/axiosConfig';
 import Loader from '../../../components/Loader';
-import { NewMyRequest } from './NewMyRequest';
+import { NewLunchProvider } from './NewLunchProvider';
+import { EditLunchProvider } from './EditLunchProvider';
 import styles from '../../../styles/LeaveTypesGroup';
 
-export const LeaveTypes = () => {
-  tableHead = ['List Date Off', 'Type Off', 'Reason', 'Total Leaves', 'Status'];
-  widthArr = [180, 130, 70, 50, 100];
+export const LunchProvider = () => {
+  tableHead = ['Name', 'Phone', 'Budget', 'Veggie', 'Action'];
+  widthArr = [100, 130, 110, 100, 80];
 
   const [data, setData] = useState([]);
 
@@ -42,18 +43,18 @@ export const LeaveTypes = () => {
   };
 
   const handlePressDelete = (id) => {
-    Alert.alert('Cancel Request', 'Do you want to cancel this request ?', [
+    Alert.alert('Delete', 'Are you sure to delete this?', [
       {
         text: 'Cancel',
         style: 'cancel',
       },
-      { text: 'Confirm', onPress: () => handleDelete(id) },
+      { text: 'Delete', onPress: () => handleDelete(id) },
     ]);
   };
   const handleDelete = (id) => {
     (async () => {
       try {
-        const response = await axiosConfig.delete(`/workday/request-off/${id}`);
+        const response = await axiosConfig.delete(`provider/${id}`);
         handleIsRefresh();
       } catch (error) {
         setHasError(true);
@@ -61,6 +62,11 @@ export const LeaveTypes = () => {
     })();
   };
 
+  const checkBoxVeggie = (isChecked) => (
+    <Checkbox isChecked={isChecked} isDisabled>
+      Veggie
+    </Checkbox>
+  );
   const editBtn = (item) => (
     <TouchableOpacity
       style={{ paddingLeft: 10, paddingRight: 10 }}
@@ -76,10 +82,10 @@ export const LeaveTypes = () => {
   );
 
   const tableData = data?.map((item) => [
-    item.date_off,
-    item.leave_type,
-    item.reason,
-    item.total,
+    item.name,
+    item.phone,
+    item.budget,
+    checkBoxVeggie(item.has_vegetarian),
     [editBtn(item), deleteBtn(item.id)],
   ]);
 
@@ -90,9 +96,7 @@ export const LeaveTypes = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axiosConfig.get(
-          `workday/request-off/list_request_user`
-        );
+        const response = await axiosConfig.get(`provider/`);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -122,7 +126,7 @@ export const LeaveTypes = () => {
             variant='unstyled'
           />
         </View>
-        <NewMyRequest
+        <NewLunchProvider
           isOpenModal={showModalNew}
           closeModal={closeModalNew}
           handleIsRefresh={handleIsRefresh}
@@ -165,6 +169,12 @@ export const LeaveTypes = () => {
               </ScrollView>
             </View>
           </ScrollView>
+          <EditLunchProvider
+            isOpenModal={showModalEdit}
+            closeModal={closeModalEdit}
+            item={item}
+            handleIsRefresh={handleIsRefresh}
+          />
         </View>
       </View>
     </>

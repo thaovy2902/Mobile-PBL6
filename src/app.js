@@ -12,8 +12,8 @@ import { Lunch } from './containers/lunch/Lunch';
 import { Request } from './containers/absence/request/Request';
 import { Leave } from './containers/absence/leave/Leave';
 import { Employee } from './containers/employee/Employee';
-import { LunchCalendar } from './containers/lunch/LunchCalendar';
-import { LunchCalendarOptions } from './containers/lunch/LunchCalendarOptions';
+import { LunchCalendar } from './containers/lunch/meals/LunchCalendar';
+import { LunchCalendarOptions } from './containers/lunch/meals/LunchCalendarOptions';
 import { PersonalInformation } from './containers/profile/PersonalInformation';
 
 const Stack = createNativeStackNavigator();

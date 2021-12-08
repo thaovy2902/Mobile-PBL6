@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import axiosConfig from '../../../../core/axiosConfig';
+import { Button, FormControl, Input, Modal, Checkbox } from 'native-base';
+import axiosConfig from '../../../core/axiosConfig';
 
-import {
-  Button,
-  FormControl,
-  Input,
-  Modal,
-  Select,
-  Checkbox,
-} from 'native-base';
-
-export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
-  const [newData, setNewData] = useState({ is_count: true });
-  const [leaveTypesGroup, setLeaveTypesGroup] = useState(null);
+export const EditLunchProvider = ({
+  isOpenModal,
+  closeModal,
+  item,
+  handleIsRefresh,
+}) => {
+  const [newData, setNewData] = useState(null);
   const [hasError, setHasError] = useState(false);
 
   const validate = () => {
@@ -27,12 +23,11 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
     validate() &&
       (async () => {
         try {
-          const response = await axiosConfig.post(
-            'workday/admin/leave-types',
+          const response = await axiosConfig.put(
+            `provider/${item.id}`,
             newData
           );
           handleIsRefresh();
-          setNewData({});
           closeModal();
         } catch (error) {
           setHasError(true);
@@ -40,90 +35,80 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
         }
       })();
   };
-
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axiosConfig.get(
-          'workday/admin/group-leave-types'
-        );
-        setLeaveTypesGroup(response.data);
-      } catch (error) {
-        setHasError(true);
-      }
-    })();
-  }, []);
+    setNewData(item);
+  }, [item]);
 
   return (
     <>
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         <Modal.Content maxWidth='500px'>
           <Modal.CloseButton />
-          <Modal.Header>New Leave Types</Modal.Header>
+          <Modal.Header>Edit Provider</Modal.Header>
           <Modal.Body>
             <FormControl isRequired>
               <FormControl.Label _text={{ bold: true }}>Name</FormControl.Label>
               <Input
+                value={newData?.name}
                 onChangeText={(value) =>
                   setNewData({ ...newData, name: value })
                 }
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Group
-              </FormControl.Label>
-              <Select
-                minWidth='200'
-                accessibilityLabel='Select'
-                placeholder='Select'
-                mt={1}
-                fontSize='md'
-                onValueChange={(value) =>
-                  setNewData({ ...newData, leave_type_group: value })
-                }
-              >
-                {leaveTypesGroup &&
-                  leaveTypesGroup?.map((item) => (
-                    <Select.Item
-                      label={item?.name}
-                      value={item?.id}
-                      key={item?.id}
-                    />
-                  ))}
-              </Select>
-            </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>
-                Limit Days
+                Phone
               </FormControl.Label>
               <Input
                 keyboardType='numeric'
+                value={newData?.phone}
                 onChangeText={(value) =>
-                  setNewData({ ...newData, days: value })
+                  setNewData({ ...newData, phone: value })
                 }
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Description
+                Budget
               </FormControl.Label>
               <Input
+                keyboardType='numeric'
+                value={newData?.budget}
                 onChangeText={(value) =>
-                  setNewData({ ...newData, descriptions: value })
+                  setNewData({ ...newData, budget: value })
                 }
               />
             </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Is Count?</FormControl.Label>
-              <Checkbox
-                isChecked={newData?.is_count}
-                onChange={(value) =>
-                  setNewData({ ...newData, is_count: value })
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>
+                Address
+              </FormControl.Label>
+              <Input
+                value={newData?.address}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, address: value })
                 }
-              >
-                Count Day Leave
-              </Checkbox>
+              />
+            </FormControl>
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>Link</FormControl.Label>
+              <Input
+                value={newData?.link}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, link: value })
+                }
+              />
+            </FormControl>
+            <FormControl mt='3' style={{ flexDirection: 'row' }}>
+              <FormControl.Label _text={{ bold: true }}>
+                Veggie
+              </FormControl.Label>
+              <Checkbox
+                isChecked={newData?.has_vegetarian}
+                onChange={(value) =>
+                  setNewData({ ...newData, has_vegetarian: value })
+                }
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>
@@ -135,7 +120,7 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
               >
                 Cancel
               </Button>
-              <Button onPress={onSubmit}>Add</Button>
+              <Button onPress={onSubmit}>Edit</Button>
             </Button.Group>
           </Modal.Footer>
         </Modal.Content>

@@ -3,43 +3,37 @@ import React, { useState, useEffect } from 'react';
 import {
   Button,
   FormControl,
-  Input,
+  Select,
   Modal,
   Checkbox,
-  Select,
+  TextArea,
 } from 'native-base';
-import axiosConfig from '../../../../core/axiosConfig';
+import DatePicker from 'react-native-datepicker';
+import axiosConfig from '../../../core/axiosConfig';
 
-export const EditLeaveTypes = ({
+export const EditLunchSchedule = ({
   isOpenModal,
   closeModal,
   item,
   handleIsRefresh,
 }) => {
   const [newData, setNewData] = useState(null);
-  const [leaveTypesGroup, setLeaveTypesGroup] = useState(null);
-  const [errors, setErrors] = React.useState({});
+  const [provider, setProvider] = useState(null);
   const [hasError, setHasError] = useState(false);
 
   const validate = () => {
-    if (newData.name === undefined) {
-      setErrors({
-        ...errors,
-        name: 'Field is required',
-      });
+    if (newData.note === undefined) {
       return false;
     }
     return true;
   };
 
   const onSubmit = () => {
+    console.log(newData);
     validate() &&
       (async () => {
         try {
-          const response = await axiosConfig.put(
-            `workday/admin/leave-types/${item.id}`,
-            newData
-          );
+          const response = await axiosConfig.put(`lunches/${item.id}`, newData);
           handleIsRefresh();
           closeModal();
         } catch (error) {
@@ -55,10 +49,8 @@ export const EditLeaveTypes = ({
   useEffect(() => {
     (async () => {
       try {
-        const response = await axiosConfig.get(
-          'workday/admin/group-leave-types'
-        );
-        setLeaveTypesGroup(response.data);
+        const response = await axiosConfig.get('provider/');
+        setProvider(response.data);
       } catch (error) {
         setHasError(true);
       }
@@ -70,20 +62,32 @@ export const EditLeaveTypes = ({
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         <Modal.Content maxWidth='500px'>
           <Modal.CloseButton />
-          <Modal.Header>Edit Leave Types</Modal.Header>
+          <Modal.Header>Edit Schedule</Modal.Header>
           <Modal.Body>
             <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>Name</FormControl.Label>
-              <Input
-                value={newData?.name}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, name: value })
-                }
+              <FormControl.Label _text={{ bold: true }}>Date</FormControl.Label>
+              <DatePicker
+                style={{ width: 200, backGroundColor: 'transparent' }}
+                mode='date'
+                date={newData?.date}
+                confirmBtnText='Confirm'
+                cancelBtnText='Cancel'
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                  },
+                  dateInput: {
+                    marginLeft: 50,
+                  },
+                }}
+                onDateChange={(date) => setNewData({ ...newData, date: date })}
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Group
+                Provider
               </FormControl.Label>
               <Select
                 minWidth='200'
@@ -91,17 +95,17 @@ export const EditLeaveTypes = ({
                 placeholder='Select'
                 mt={1}
                 fontSize='md'
-                value={newData?.name_type}
-                onValueChange={(value) => {
+                value={newData?.name_provider}
+                onValueChange={(value) =>
                   setNewData({
                     ...newData,
-                    name_type: value.name,
-                    leave_type_group: value.id,
-                  });
-                }}
+                    provider: value?.id,
+                    name_provider: value?.name,
+                  })
+                }
               >
-                {leaveTypesGroup &&
-                  leaveTypesGroup?.map((item) => (
+                {provider &&
+                  provider?.map((item) => (
                     <Select.Item
                       label={item?.name}
                       value={item}
@@ -110,39 +114,25 @@ export const EditLeaveTypes = ({
                   ))}
               </Select>
             </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>
-                Limit Days
-              </FormControl.Label>
-              <Input
-                keyboardType='numeric'
-                value={newData?.days.toString()}
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>Note</FormControl.Label>
+              <TextArea
+                value={newData?.note}
                 onChangeText={(value) =>
-                  setNewData({ ...newData, days: value })
+                  setNewData({ ...newData, note: value })
                 }
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' style={{ flexDirection: 'row' }}>
               <FormControl.Label _text={{ bold: true }}>
-                Description
+                Veggie
               </FormControl.Label>
-              <Input
-                value={newData?.descriptions}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, descriptions: value })
-                }
-              />
-            </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Is Count?</FormControl.Label>
               <Checkbox
-                isChecked={newData?.is_count}
+                isChecked={newData?.has_veggie}
                 onChange={(value) =>
-                  setNewData({ ...newData, is_count: value })
+                  setNewData({ ...newData, has_veggie: value })
                 }
-              >
-                Count Day Leave
-              </Checkbox>
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>

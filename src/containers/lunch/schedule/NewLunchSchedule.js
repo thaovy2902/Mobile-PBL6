@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
-import axiosConfig from '../../../../core/axiosConfig';
-
 import {
   Button,
   FormControl,
-  Input,
   Modal,
-  Select,
   Checkbox,
+  Select,
+  TextArea,
 } from 'native-base';
+import DatePicker from 'react-native-datepicker';
+import axiosConfig from '../../../core/axiosConfig';
 
-export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
-  const [newData, setNewData] = useState({ is_count: true });
-  const [leaveTypesGroup, setLeaveTypesGroup] = useState(null);
+export const NewLunchSchedule = ({
+  isOpenModal,
+  closeModal,
+  handleIsRefresh,
+}) => {
+  const [newData, setNewData] = useState({
+    date: new Date(),
+    has_veggie: false,
+  });
+  const [provider, setProvider] = useState(null);
   const [hasError, setHasError] = useState(false);
 
   const validate = () => {
-    if (newData.name === undefined) {
+    if (newData.note === undefined) {
       return false;
     }
     return true;
@@ -27,10 +34,7 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
     validate() &&
       (async () => {
         try {
-          const response = await axiosConfig.post(
-            'workday/admin/leave-types',
-            newData
-          );
+          const response = await axiosConfig.post('lunches/', newData);
           handleIsRefresh();
           setNewData({});
           closeModal();
@@ -44,34 +48,44 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axiosConfig.get(
-          'workday/admin/group-leave-types'
-        );
-        setLeaveTypesGroup(response.data);
+        const response = await axiosConfig.get('provider/');
+        setProvider(response.data);
       } catch (error) {
         setHasError(true);
       }
     })();
   }, []);
-
   return (
     <>
       <Modal isOpen={isOpenModal} onClose={closeModal}>
         <Modal.Content maxWidth='500px'>
           <Modal.CloseButton />
-          <Modal.Header>New Leave Types</Modal.Header>
+          <Modal.Header>New Schedule</Modal.Header>
           <Modal.Body>
             <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>Name</FormControl.Label>
-              <Input
-                onChangeText={(value) =>
-                  setNewData({ ...newData, name: value })
-                }
+              <FormControl.Label _text={{ bold: true }}>Date</FormControl.Label>
+              <DatePicker
+                style={{ width: 200, backGroundColor: 'transparent' }}
+                mode='date'
+                date={newData?.date}
+                confirmBtnText='Confirm'
+                cancelBtnText='Cancel'
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                  },
+                  dateInput: {
+                    marginLeft: 50,
+                  },
+                }}
+                onDateChange={(date) => setNewData({ ...newData, date: date })}
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' isRequired>
               <FormControl.Label _text={{ bold: true }}>
-                Group
+                Provider
               </FormControl.Label>
               <Select
                 minWidth='200'
@@ -80,11 +94,11 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
                 mt={1}
                 fontSize='md'
                 onValueChange={(value) =>
-                  setNewData({ ...newData, leave_type_group: value })
+                  setNewData({ ...newData, provider: value })
                 }
               >
-                {leaveTypesGroup &&
-                  leaveTypesGroup?.map((item) => (
+                {provider &&
+                  provider?.map((item) => (
                     <Select.Item
                       label={item?.name}
                       value={item?.id}
@@ -93,37 +107,24 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
                   ))}
               </Select>
             </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label _text={{ bold: true }}>
-                Limit Days
-              </FormControl.Label>
-              <Input
-                keyboardType='numeric'
-                onChangeText={(value) =>
-                  setNewData({ ...newData, days: value })
-                }
+            <FormControl mt='3' isRequired>
+              <FormControl.Label _text={{ bold: true }}>Note</FormControl.Label>
+              <TextArea
+                onChangeText={(value) => {
+                  setNewData({ ...newData, note: value });
+                }}
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl mt='3' style={{ flexDirection: 'row' }}>
               <FormControl.Label _text={{ bold: true }}>
-                Description
+                Veggie
               </FormControl.Label>
-              <Input
-                onChangeText={(value) =>
-                  setNewData({ ...newData, descriptions: value })
-                }
-              />
-            </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Is Count?</FormControl.Label>
               <Checkbox
-                isChecked={newData?.is_count}
+                isChecked={newData?.has_veggie}
                 onChange={(value) =>
-                  setNewData({ ...newData, is_count: value })
+                  setNewData({ ...newData, has_veggie: value })
                 }
-              >
-                Count Day Leave
-              </Checkbox>
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>

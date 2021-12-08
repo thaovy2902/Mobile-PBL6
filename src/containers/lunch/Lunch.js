@@ -4,9 +4,9 @@ import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
 import HeaderBar from '../../components/Header';
-import { LunchSchedule } from './LunchSchedule';
-import { LunchProvider } from './LunchProvider';
-import { LunchCalendar } from './LunchCalendar';
+import { LunchSchedule } from './schedule/LunchSchedule';
+import { LunchProvider } from './provider/LunchProvider';
+import { LunchCalendar } from './meals/LunchCalendar';
 
 const initialLayout = { width: Dimensions.get('window').width };
 

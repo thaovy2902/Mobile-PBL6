@@ -3,16 +3,12 @@ import React from 'react';
 import { Button, FormControl, Input, Modal, Select } from 'native-base';
 import { SearchDateBar } from '../../../components/SearchDateBar';
 
-export const NewMyRequest = ({ isOpenModal, closeModal }) => {
-  const [formData, setData] = React.useState({});
-  const [errors, setErrors] = React.useState({});
+export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
+  const [newData, setNewData] = React.useState({});
+  const [hasError, setHasError] = React.useState(false);
 
   const validate = () => {
-    if (formData.name === undefined) {
-      setErrors({
-        ...errors,
-        name: 'Field is required',
-      });
+    if (newData.name === undefined) {
       return false;
     }
     return true;

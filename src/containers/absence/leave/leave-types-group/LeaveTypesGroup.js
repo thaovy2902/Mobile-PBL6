@@ -5,7 +5,7 @@ import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button } from 'native-base';
-import axioisConfig from '../../../../core/axiosConfig';
+import axiosConfig from '../../../../core/axiosConfig';
 import { NewLeaveTypesGroup } from './NewLeaveTypesGroup';
 import { EditLeaveTypesGroup } from './EditLeaveTypesGroup';
 import styles from '../../../../styles/LeaveTypesGroup';
@@ -52,7 +52,7 @@ export const LeaveTypesGroup = () => {
   const handleDelete = (id) => {
     (async () => {
       try {
-        const response = await axioisConfig.delete(
+        const response = await axiosConfig.delete(
           `workday/admin/group-leave-types/${id}`
         );
         handleIsRefresh();
@@ -93,7 +93,7 @@ export const LeaveTypesGroup = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axioisConfig.get(
+        const response = await axiosConfig.get(
           `workday/admin/group-leave-types`
         );
         setData(response.data);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Button, FormControl, Input, Modal, Checkbox } from 'native-base';
-import axioisConfig from '../../../../core/axiosConfig';
+import axiosConfig from '../../../../core/axiosConfig';
 
 export const NewLeaveTypesGroup = ({
   isOpenModal,
@@ -26,7 +26,7 @@ export const NewLeaveTypesGroup = ({
     validate() &&
       (async () => {
         try {
-          const response = await axioisConfig.post(
+          const response = await axiosConfig.post(
             'workday/admin/group-leave-types',
             newData
           );
