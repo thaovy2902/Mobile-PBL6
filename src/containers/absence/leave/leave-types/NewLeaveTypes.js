@@ -98,7 +98,7 @@ export const NewLeaveTypes = ({ isOpenModal, closeModal, handleIsRefresh }) => {
                 Limit Days
               </FormControl.Label>
               <Input
-                type='number'
+                keyboardType='numeric'
                 onChangeText={(value) =>
                   setNewData({ ...newData, days: value })
                 }
