@@ -5,18 +5,17 @@ import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button } from 'native-base';
-import axiosConfig from '../../../core/axiosConfig';
-import Loader from '../../../components/Loader';
-import { NewMyRequest } from './NewMyRequest';
-import styles from '../../../styles/LeaveTypesGroup';
+import axiosConfig from '../../../../core/axiosConfig';
+import { NewLeaveTypesGroup } from './NewLeaveTypesGroup';
+import { EditLeaveTypesGroup } from './EditLeaveTypesGroup';
+import styles from '../../../../styles/LeaveTypesGroup';
 
-export const LeaveTypes = () => {
-  tableHead = ['List Date Off', 'Type Off', 'Reason', 'Total Leaves', 'Status'];
-  widthArr = [180, 130, 70, 50, 100];
+export const LeaveTypesGroup = () => {
+  const tableHead = ['Name', 'Pay Choices', 'Actions'];
+  const widthArr = [130, 170, 80];
 
   const [data, setData] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isRefresh, setIsRefresh] = useState(false);
 
@@ -42,18 +41,20 @@ export const LeaveTypes = () => {
   };
 
   const handlePressDelete = (id) => {
-    Alert.alert('Cancel Request', 'Do you want to cancel this request ?', [
+    Alert.alert('Delete', 'Are you sure to delete this?', [
       {
         text: 'Cancel',
         style: 'cancel',
       },
-      { text: 'Confirm', onPress: () => handleDelete(id) },
+      { text: 'Delete', onPress: () => handleDelete(id) },
     ]);
   };
   const handleDelete = (id) => {
     (async () => {
       try {
-        const response = await axiosConfig.delete(`/workday/request-off/${id}`);
+        const response = await axiosConfig.delete(
+          `workday/admin/group-leave-types/${id}`
+        );
         handleIsRefresh();
       } catch (error) {
         setHasError(true);
@@ -76,10 +77,12 @@ export const LeaveTypes = () => {
   );
 
   const tableData = data?.map((item) => [
-    item.date_off,
-    item.leave_type,
-    item.reason,
-    item.total,
+    item.name,
+    [
+      item.is_company_pay ? 'Company Pays' : '',
+      item.is_company_pay && '\n',
+      item.is_insurance_pay ? 'Insurance Pays' : '',
+    ],
     [editBtn(item), deleteBtn(item.id)],
   ]);
 
@@ -91,20 +94,14 @@ export const LeaveTypes = () => {
     (async () => {
       try {
         const response = await axiosConfig.get(
-          `workday/request-off/list_request_user`
+          `workday/admin/group-leave-types`
         );
         setData(response.data);
-        setIsLoading(false);
       } catch (error) {
         setHasError(true);
-        setIsLoading(false);
       }
     })();
   }, [isRefresh]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <>
@@ -122,7 +119,7 @@ export const LeaveTypes = () => {
             variant='unstyled'
           />
         </View>
-        <NewMyRequest
+        <NewLeaveTypesGroup
           isOpenModal={showModalNew}
           closeModal={closeModalNew}
           handleIsRefresh={handleIsRefresh}
@@ -165,6 +162,12 @@ export const LeaveTypes = () => {
               </ScrollView>
             </View>
           </ScrollView>
+          <EditLeaveTypesGroup
+            isOpenModal={showModalEdit}
+            closeModal={closeModalEdit}
+            item={item}
+            handleIsRefresh={handleIsRefresh}
+          />
         </View>
       </View>
     </>

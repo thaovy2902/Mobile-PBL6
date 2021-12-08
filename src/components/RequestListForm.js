@@ -13,7 +13,7 @@ export const RequestListForm = ({ tableHead, tableData, widthArr }) => {
               data={tableHead}
               widthArr={widthArr}
               style={styles.header}
-              textStyle={styles.text}
+              textStyle={styles.textHead}
             />
           </Table>
           <ScrollView style={styles.dataWrapper}>
@@ -41,7 +41,8 @@ export const RequestListForm = ({ tableHead, tableData, widthArr }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   header: { height: 50, backgroundColor: '#4da4e0' },
-  text: { textAlign: 'center', fontWeight: '100', fontSize: 10 },
+  text: { textAlign: 'center', fontWeight: '300', fontSize: 14 },
+  textHead: { textAlign: 'center', fontWeight: '400', fontSize: 16 },
   dataWrapper: { marginTop: -1 },
   row: { height: 40, backgroundColor: '#ffffff' },
 });

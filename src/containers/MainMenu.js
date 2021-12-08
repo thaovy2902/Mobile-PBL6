@@ -60,21 +60,21 @@ export const MainMenu = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-        {/* <SpeedDial
-        isOpen={open}
-        icon={{ name: "add", color: "#4da4e0" }}
-        openIcon={{ name: "close", color: "#4da4e0" }}
-        onOpen={() => setOpen(!open)}
-        onClose={() => setOpen(!open)}
-        color="#ffffff"
-      >
-        <SpeedDial.Action
-          color="#ffffff"
-          icon={{ name: "logout", color: "#4da4e0" }}
-          title="Logout"
-          onPress={() => navigation.navigate("Login")}
-        />
-      </SpeedDial> */}
+        <SpeedDial
+          isOpen={open}
+          icon={{ name: 'add', color: '#4da4e0' }}
+          openIcon={{ name: 'close', color: '#4da4e0' }}
+          onOpen={() => setOpen(!open)}
+          onClose={() => setOpen(!open)}
+          color='#ffffff'
+        >
+          <SpeedDial.Action
+            color='#ffffff'
+            icon={{ name: 'logout', color: '#4da4e0' }}
+            title='Logout'
+            onPress={() => navigation.navigate('Login')}
+          />
+        </SpeedDial>
       </View>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth='400px'>

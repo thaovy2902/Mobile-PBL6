@@ -4,8 +4,8 @@ import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
 import HeaderBar from '../../../components/Header';
-import { LeaveTypes } from './LeaveTypes';
-import { LeaveTypesGroup } from './LeaveTypesGroup';
+import { LeaveTypes } from './leave-types/LeaveTypes';
+import { LeaveTypesGroup } from './leave-types-group/LeaveTypesGroup';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -34,7 +34,7 @@ export const Leave = ({ navigation }) => {
           });
           const color = index === i ? '#1f2937' : '#a1a1aa';
           const borderColor = index === i ? '#4da4e0' : 'coolGray.200';
-          const fontSize = 10;
+          const fontSize = 13;
 
           return (
             <Box

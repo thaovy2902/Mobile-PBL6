@@ -45,7 +45,6 @@ export default StyleSheet.create({
     paddingBottom: SCREEN_HEIGHT * 0.02,
   },
   calendarLegendBox: {
-    marginTop: 6,
     height: 18,
     width: 18,
     borderRadius: 4,

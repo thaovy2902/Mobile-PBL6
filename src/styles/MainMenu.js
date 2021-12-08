@@ -30,7 +30,7 @@ export default StyleSheet.create({
   slogan: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: SCREEN_WIDTH * 0.04,
+    fontSize: 20,
   },
   frame: {
     opacity: 0.9,
@@ -46,7 +46,6 @@ export default StyleSheet.create({
   },
   menuItem: {
     backgroundColor: 'white',
-    // display: 'block',
     display: 'flex',
     width: SCREEN_WIDTH * 0.32,
     height: SCREEN_WIDTH * 0.32,
@@ -61,7 +60,7 @@ export default StyleSheet.create({
     marginRight: 20,
   },
   menuItemText: {
-    fontSize: SCREEN_WIDTH * 0.03,
+    fontSize: 16,
     fontWeight: 'bold',
     display: 'flex',
     textAlign: 'center',
@@ -75,7 +74,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   subMenuItemText: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#4da4e0',
   },
 });

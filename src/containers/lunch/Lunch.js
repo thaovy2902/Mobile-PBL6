@@ -4,9 +4,9 @@ import { Dimensions, Animated, Pressable } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { NativeBaseProvider, Box } from 'native-base';
 import HeaderBar from '../../components/Header';
-import { LunchSchedule } from './LunchSchedule';
-import { LunchProvider } from './LunchProvider';
-import { LunchCalendar } from './LunchCalendar';
+import { LunchSchedule } from './schedule/LunchSchedule';
+import { LunchProvider } from './provider/LunchProvider';
+import { LunchCalendar } from './meals/LunchCalendar';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -36,7 +36,7 @@ export const Lunch = ({ navigation }) => {
           });
           const color = index === i ? '#1f2937' : '#a1a1aa';
           const borderColor = index === i ? '#4da4e0' : 'coolGray.200';
-          const fontSize = 10;
+          const fontSize = 13;
 
           return (
             <Box
