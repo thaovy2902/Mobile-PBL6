@@ -10,7 +10,7 @@ export default StyleSheet.create({
     height: '100%',
   },
   optionFrame: {
-    marginBottom: 20,
+    marginBottom: 30,
     marginTop: 10,
   },
   formFrame: {
@@ -19,13 +19,15 @@ export default StyleSheet.create({
   },
   formGroup: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 25,
   },
   titleText: {
     color: '#4da4e0',
-    width: 110,
+    width: 120,
+    fontSize: 16,
   },
   contentText: {
     fontWeight: '200',
+    fontSize: 16,
   },
 });

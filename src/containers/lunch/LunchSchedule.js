@@ -15,7 +15,7 @@ export const LunchSchedule = () => {
     ['2021-10-29', 'Admin', 'ABC'],
     ['2021-10-30', 'Admin', 'ABC'],
   ];
-  widthArr = [180, 120, 70];
+  widthArr = [160, 130, 90];
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {

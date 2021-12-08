@@ -51,7 +51,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   forgotButton: {
-    fontSize: SCREEN_WIDTH * 0.04,
+    fontSize: 22,
     color: '#fff',
   },
   loginBtn: {
@@ -87,7 +87,7 @@ export default StyleSheet.create({
   slogan: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: SCREEN_WIDTH * 0.04,
+    fontSize: 20,
   },
   frame: {
     opacity: 0.9,
@@ -97,7 +97,7 @@ export default StyleSheet.create({
   welcome: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
     fontStyle: 'normal',
     width: '100%',
@@ -106,7 +106,7 @@ export default StyleSheet.create({
   loginText: {
     color: '#4da4e0',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 22,
     paddingBottom: 5,
     paddingTop: 5,
   },

@@ -15,7 +15,7 @@ export const LunchProvider = () => {
     ['Admin', '0909090909', 'ABC'],
     ['Admin', '0909090909', 'ABC'],
   ];
-  widthArr = [180, 120, 70];
+  widthArr = [160, 130, 90];
 
   const [showModal, setShowModal] = useState(false);
 

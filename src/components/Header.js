@@ -36,7 +36,7 @@ const HeaderBar = ({ title, navigation }) => {
       leftComponent={<MyCustomLeftComponent navigation={navigation} />}
       centerComponent={{
         text: title,
-        style: { color: '#fff', fontSize: 14, fontWeight: '500' },
+        style: { color: '#fff', fontSize: 20, fontWeight: '500' },
       }}
       rightComponent={<MyCustomRightComponent navigation={navigation} />}
     />

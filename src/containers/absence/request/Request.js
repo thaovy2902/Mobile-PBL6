@@ -37,7 +37,7 @@ export const Request = ({ navigation }) => {
           });
           const color = index === i ? '#1f2937' : '#a1a1aa';
           const borderColor = index === i ? '#4da4e0' : 'coolGray.200';
-          const fontSize = 10;
+          const fontSize = 13;
 
           return (
             <Box

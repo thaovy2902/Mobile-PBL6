@@ -10,7 +10,7 @@ export const ApprovalRequest = () => {
     ['Admin', '2021-10-25 (All day)', 'Sick'],
     ['Admin', '2021-10-25 (All day)', 'Sick'],
   ];
-  widthArr = [120, 180, 70];
+  widthArr = [120, 190, 70];
   return (
     <RequestListForm
       tableData={tableData}

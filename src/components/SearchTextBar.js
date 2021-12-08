@@ -20,6 +20,7 @@ export const SearchTextBar = () => {
           type='date'
           variant='filled'
           width='100%'
+          size='lg'
           height={10}
           bg='#fff'
           borderRadius='4'

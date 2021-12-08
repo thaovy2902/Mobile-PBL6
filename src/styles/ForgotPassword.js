@@ -44,9 +44,8 @@ export default StyleSheet.create({
     fontStyle: 'normal',
     fontSize: SCREEN_WIDTH * 0.04,
   },
-
   please: {
-    fontSize: 14,
+    fontSize: 17,
     color: '#fff',
     width: '80%',
     marginLeft: 40,
@@ -87,8 +86,7 @@ export default StyleSheet.create({
   slogan: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: SCREEN_WIDTH * 0.04,
-    fontWeight: '600',
+    fontSize: 20,
   },
   frame: {
     opacity: 0.9,
@@ -98,7 +96,7 @@ export default StyleSheet.create({
   welcome: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
     fontStyle: 'normal',
     width: '100%',

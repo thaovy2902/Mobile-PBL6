@@ -24,7 +24,7 @@ export const Employee = ({ navigation }) => {
       />
       <View style={styles.employeeSearch}>
         <FormControl mt='3'>
-          <Input maxWidth='100%' placeholder='Enter name' />
+          <Input size='lg' maxWidth='100%' placeholder='Enter name' />
         </FormControl>
         <View style={styles.employeeSearchCol6}>
           <View style={styles.searchCol6Item}>
@@ -34,6 +34,7 @@ export const Employee = ({ navigation }) => {
                 accessibilityLabel='Select'
                 placeholder='Position'
                 mt={1}
+                fontSize='md'
               >
                 <Select.Item label='Director' value='director' />
                 <Select.Item
@@ -51,6 +52,7 @@ export const Employee = ({ navigation }) => {
                 accessibilityLabel='Select'
                 placeholder='Team'
                 mt={1}
+                fontSize='md'
               >
                 <Select.Item label='Frontend Develop' value='FE' />
                 <Select.Item label='Backend Develop' value='BE' />

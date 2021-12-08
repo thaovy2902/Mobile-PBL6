@@ -15,7 +15,7 @@ export const MyRequest = ({}) => {
     ['2021-10-29 (All day)', 'Sick Leave', 'Sick'],
     ['2021-10-30 (All day)', 'Sick Leave', 'Sick'],
   ];
-  widthArr = [180, 120, 70];
+  widthArr = [180, 130, 70];
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
