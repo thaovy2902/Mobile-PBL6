@@ -56,10 +56,6 @@ export const GeneralProfile = ({}) => {
           <Text style={styles.titleText}>Birthday:</Text>
           <Text style={styles.contentText}>No data</Text>
         </View>
-        <View style={styles.formGroup}>
-          <Text style={styles.titleText}>Role:</Text>
-          <Text style={styles.contentText}>Member</Text>
-        </View>
       </View>
       <EditGeneralProfile isOpenModal={showModal} closeModal={closeModal} />
     </View>

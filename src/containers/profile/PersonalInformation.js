@@ -67,13 +67,14 @@ export const PersonalInformation = ({ navigation }) => {
   return (
     <NativeBaseProvider>
       <HeaderBar title='Personal Information' navigation={navigation} />
-      <TabView
+      {/* <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         renderTabBar={renderTabBar}
         onIndexChange={setIndex}
         initialLayout={initialLayout}
-      />
+      /> */}
+      <GeneralProfile />
     </NativeBaseProvider>
   );
 };
