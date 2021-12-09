@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Alert, Text } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button } from 'native-base';
@@ -10,9 +10,9 @@ import Loader from '../../../components/Loader';
 import { NewMyRequest } from './NewMyRequest';
 import styles from '../../../styles/LeaveTypesGroup';
 
-export const LeaveTypes = () => {
+export const MyRequest = () => {
   tableHead = ['List Date Off', 'Type Off', 'Reason', 'Total Leaves', 'Status'];
-  widthArr = [180, 130, 70, 50, 100];
+  widthArr = [140, 130, 100, 100, 150];
 
   const [data, setData] = useState([]);
 
@@ -61,26 +61,53 @@ export const LeaveTypes = () => {
     })();
   };
 
-  const editBtn = (item) => (
-    <TouchableOpacity
-      style={{ paddingLeft: 10, paddingRight: 10 }}
-      onPress={() => handleOpenModalEdit(item)}
+  const statusBg = (status) => {
+    if (status === 'Cancel') {
+      return '#f56c6c';
+    } else if (status === 'Pending') {
+      return '#e6a23c';
+    } else {
+      return '#67c23a';
+    }
+  };
+
+  const optionsBtn = (status, id) => (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      }}
     >
-      <Icon name='edit' size={24} color='#4da4e0' />
-    </TouchableOpacity>
-  );
-  const deleteBtn = (id) => (
-    <TouchableOpacity onPress={() => handlePressDelete(id)}>
-      <Icon name='trash-alt' size={24} color='#4da4e0' />
-    </TouchableOpacity>
+      <TouchableOpacity
+        disabled
+        style={{
+          width: 90,
+          borderRadius: '50%',
+          paddingLeft: 10,
+          paddingRight: 10,
+          paddingBottom: 10,
+          paddingTop: 10,
+          backgroundColor: statusBg(status),
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ color: '#fff' }}>{status}</Text>
+      </TouchableOpacity>
+      {status === 'Pending' && (
+        <TouchableOpacity onPress={() => handlePressDelete(id)}>
+          <Icon name='trash-alt' size={30} color='#4da4e0' />
+        </TouchableOpacity>
+      )}
+    </View>
   );
 
   const tableData = data?.map((item) => [
-    item.date_off,
-    item.leave_type,
+    item.date_off.map((item) => item.date).join('\n'),
+    item.leave_type.name,
     item.reason,
     item.total,
-    [editBtn(item), deleteBtn(item.id)],
+    optionsBtn(item.status, item.id),
   ]);
 
   const handleIsRefresh = () => {
