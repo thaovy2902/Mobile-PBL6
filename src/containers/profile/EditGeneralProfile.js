@@ -1,41 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Button, FormControl, Input, Modal, Select } from 'native-base';
-import { SearchDateBar } from '../../components/SearchDateBar';
+import { Button, FormControl, Select, Modal, Input } from 'native-base';
+import DatePicker from 'react-native-datepicker';
+import axiosConfig from '../../core/axiosConfig';
 
-export const EditGeneralProfile = ({ isOpenModal, closeModal }) => {
-  const [formData, setData] = React.useState({});
-  const [errors, setErrors] = React.useState({});
+export const EditGeneralProfile = ({
+  isOpenModal,
+  closeModal,
+  id,
+  handleIsRefresh,
+}) => {
+  const [newData, setNewData] = useState(null);
+  const [hasError, setHasError] = useState(false);
 
   const validate = () => {
-    if (formData.name === undefined) {
-      setErrors({
-        ...errors,
-        name: 'Field is required',
-      });
+    if (newData.name === undefined) {
       return false;
     }
     return true;
   };
 
   const onSubmit = () => {
-    validate() ? console.log('Submitted') : console.log('Validation Failed');
-    closeModal();
+    validate() &&
+      (async () => {
+        try {
+          const response = await axiosConfig.put(`user/profile/${id}`, newData);
+          handleIsRefresh();
+          closeModal();
+        } catch (error) {
+          setHasError(true);
+          closeModal();
+        }
+      })();
   };
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axiosConfig.get(`user/profile/${id}`);
+        setNewData(response);
+      } catch (error) {
+        setHasError(true);
+      }
+    })();
+  }, [id]);
+
   return (
     <>
-      <Modal isOpen={isOpenModal} onClose={closeModal}>
-        <Modal.Content maxWidth='500px'>
+      <Modal isOpen={isOpenModal} onClose={closeModal} size='xl'>
+        <Modal.Content>
           <Modal.CloseButton />
-          <Modal.Header>Edit</Modal.Header>
+          <Modal.Header>Edit Profile</Modal.Header>
           <Modal.Body>
             <FormControl>
               <FormControl.Label>Name</FormControl.Label>
-              <Input />
+              <Input
+                value={newData?.name}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, name: value })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Email</FormControl.Label>
-              <Input />
+              <Input
+                value={newData?.email}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, email: value })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Gender</FormControl.Label>
@@ -52,19 +84,53 @@ export const EditGeneralProfile = ({ isOpenModal, closeModal }) => {
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Join Date</FormControl.Label>
-              <SearchDateBar />
+              <DatePicker
+                style={{ width: 200, backGroundColor: 'transparent' }}
+                mode='date'
+                date={newData?.join_date}
+                confirmBtnText='Confirm'
+                cancelBtnText='Cancel'
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                  },
+                  dateInput: {
+                    marginLeft: 50,
+                  },
+                }}
+                onDateChange={(date) =>
+                  setNewData({ ...newData, join_date: date })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Personal Email</FormControl.Label>
-              <Input />
+              <Input
+                value={newData?.personal_email}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, personal_email: value })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Phone</FormControl.Label>
-              <Input />
+              <Input
+                value={newData?.phone}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, phone: value })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Slack ID</FormControl.Label>
-              <Input />
+              <Input
+                value={newData?.slack_id}
+                onChangeText={(value) =>
+                  setNewData({ ...newData, slack_id: value })
+                }
+              />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Title</FormControl.Label>
@@ -81,19 +147,26 @@ export const EditGeneralProfile = ({ isOpenModal, closeModal }) => {
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>BirthDay</FormControl.Label>
-              <SearchDateBar />
-            </FormControl>
-            <FormControl mt='3'>
-              <FormControl.Label>Set Role</FormControl.Label>
-              <Select
-                minWidth='200'
-                accessibilityLabel='Select'
-                placeholder='Select'
-                mt={1}
-              >
-                <Select.Item label='Member' value='member' />
-                <Select.Item label='Superadmin' value='superadmin' />
-              </Select>
+              <DatePicker
+                style={{ width: 200, backGroundColor: 'transparent' }}
+                mode='date'
+                date={newData?.birth_day}
+                confirmBtnText='Confirm'
+                cancelBtnText='Cancel'
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                  },
+                  dateInput: {
+                    marginLeft: 50,
+                  },
+                }}
+                onDateChange={(date) =>
+                  setNewData({ ...newData, birth_day: date })
+                }
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>
@@ -105,7 +178,7 @@ export const EditGeneralProfile = ({ isOpenModal, closeModal }) => {
               >
                 Cancel
               </Button>
-              <Button onPress={onSubmit}>Add</Button>
+              <Button onPress={onSubmit}>Edit</Button>
             </Button.Group>
           </Modal.Footer>
         </Modal.Content>

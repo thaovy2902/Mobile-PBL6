@@ -85,7 +85,7 @@ export const LunchSchedule = () => {
     item.date,
     item.name_provider,
     item.note,
-    checkBoxVeggie(item.has_vegetarian),
+    checkBoxVeggie(item.has_veggie),
     [editBtn(item), deleteBtn(item.id)],
   ]);
 
