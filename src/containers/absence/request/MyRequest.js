@@ -12,7 +12,7 @@ import styles from '../../../styles/LeaveTypesGroup';
 
 export const MyRequest = () => {
   tableHead = ['List Date Off', 'Type Off', 'Reason', 'Total Leaves', 'Status'];
-  widthArr = [140, 130, 100, 100, 150];
+  widthArr = [200, 130, 100, 100, 150];
 
   const [data, setData] = useState([]);
 
@@ -103,7 +103,7 @@ export const MyRequest = () => {
   );
 
   const tableData = data?.map((item) => [
-    item.date_off.map((item) => item.date).join('\n'),
+    item.date_off.map((item) => `${item.date} (${item.type})`).join('\n'),
     item.leave_type.name,
     item.reason,
     item.total,
