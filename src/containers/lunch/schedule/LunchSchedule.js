@@ -63,7 +63,7 @@ export const LunchSchedule = () => {
   };
 
   const checkBoxVeggie = (isChecked) => (
-    <Checkbox isChecked={isChecked} isDisabled>
+    <Checkbox style={{ marginLeft: 10 }} isChecked={isChecked} isDisabled>
       Veggie
     </Checkbox>
   );
