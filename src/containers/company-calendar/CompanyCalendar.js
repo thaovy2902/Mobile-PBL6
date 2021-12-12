@@ -1,29 +1,91 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import { NativeBaseProvider } from 'native-base';
 import { Agenda } from 'react-native-calendars';
 import HeaderBar from '../../components/Header';
 import styles from '../../styles/CompanyCalendar';
 import axiosConfig from '../../core/axiosConfig';
+import moment from 'moment';
+import { DaysOffList } from './DaysOffList';
+import { LunchList } from './LunchList';
 
 export const CompanyCalendar = ({ navigation }) => {
+  const [items, setItems] = useState(null);
+
+  const [fullDays, setFullDays] = useState(null);
   const [dateOff, setDateOff] = useState(null);
   const [lunch, setLunch] = useState(null);
   const [veggie, setVeggie] = useState(null);
   const [hasError, setHasError] = useState(false);
+  const currentDay = moment().format('YYYY-MM-DD');
 
-  const items = {
-    '2021-11-22': [{ name: 'Days off: 1' }],
-    '2021-11-23': [{ name: 'Lunch: 2' }],
-    '2021-11-24': [],
-    '2021-11-25': [{ name: 'Lunch: 4' }, { name: 'Veggie Lunch: 2' }],
-    '2021-11-26': [{ name: 'Days off: 2' }, { name: 'Veggie Lunch: 2' }],
+  const [listOff, setListOff] = useState(null);
+  const [listLunch, setListLunch] = useState(null);
+  const [isListVeggie, setIsListVeggie] = useState(false);
+
+  const [showModalOff, setShowModalOff] = useState(false);
+  const [showModalLunch, setShowModalLunch] = useState(false);
+
+  const closeModalOff = () => {
+    setShowModalOff(false);
   };
+
+  const closeModalLunch = () => {
+    setShowModalLunch(false);
+  };
+
+  const handleOpenModalOff = (list) => {
+    setListOff(list);
+    setShowModalOff(true);
+  };
+
+  const handleOpenModalLunch = (list, isVeggie) => {
+    setListLunch(list);
+    setIsListVeggie(isVeggie);
+    setShowModalLunch(true);
+  };
+
   const renderItem = useCallback((item) => {
     return (
-      <TouchableOpacity style={[styles.item]} onPress={() => alert(item.name)}>
-        <Text>{item.name}</Text>
-      </TouchableOpacity>
+      <View>
+        {item['Days off'] !== undefined && (
+          <TouchableOpacity
+            style={[styles.item, styles.itemDaysOff]}
+            onPress={() => handleOpenModalOff(item.list)}
+          >
+            <Text style={styles.itemText}>Days off: {item['Days off']}</Text>
+          </TouchableOpacity>
+        )}
+        {item['Lunch'] !== undefined && (
+          <TouchableOpacity
+            style={[styles.item, styles.itemLunch]}
+            onPress={() => handleOpenModalLunch(item.list, false)}
+          >
+            <Text style={styles.itemText}>Lunch: {item['Lunch']}</Text>
+          </TouchableOpacity>
+        )}
+        {item['Veggie Lunch'] !== undefined && (
+          <>
+            <TouchableOpacity
+              style={[styles.item, styles.itemVeggie]}
+              onPress={() => handleOpenModalLunch(item.list, true)}
+            >
+              <Text style={styles.itemText}>
+                Veggie Lunch: {item['Veggie Lunch']}
+              </Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                paddingTop: 30,
+                borderBottomWidth: 1,
+                borderBottomColor: '#d0d9d2',
+                marginRight: 10,
+              }}
+            ></View>
+          </>
+        )}
+      </View>
     );
   });
   const renderEmptyDate = useCallback(() => {
@@ -31,72 +93,131 @@ export const CompanyCalendar = ({ navigation }) => {
   });
 
   useEffect(() => {
+    const temptItem = {};
+    fullDays?.forEach((item, index) => {
+      temptItem[item] = [
+        { 'Days off': 0, list: [] },
+        { Lunch: 0, list: [] },
+        { 'Veggie Lunch': 0, list: [] },
+      ];
+    });
+    dateOff?.forEach((item) => {
+      const a = fullDays.find((element) => element === item.date);
+      temptItem[a][0]['Days off']++;
+      temptItem[a][0]['list'].push(item);
+    });
+    lunch?.forEach((item) => {
+      const a = fullDays.find((element) => element === item.date);
+      temptItem[a][1]['Lunch']++;
+      temptItem[a][1]['list'].push(item);
+    });
+    veggie?.forEach((item) => {
+      const a = fullDays.find((element) => element === item.date);
+      temptItem[a][2]['Veggie Lunch']++;
+      temptItem[a][2]['list'].push(item);
+    });
+    setItems(temptItem);
+  }, [fullDays, lunch, veggie]);
+
+  useEffect(() => {
+    let full = [];
     (async () => {
       try {
-        const response = await axiosConfig.get('workday/calendar/admin');
-        const dateOffHandle = response.data.map((item) => ({
-          id: item.id,
-          start: item.date,
-          end: item.date,
-          title: item.request_off.leave_type.name,
-          typeOff: item.request_off.leave_type.name,
-          name: item.name,
-          email: item.email,
-          reason: item.request_off.reason,
-          lunch: item.lunch ? 'Yes' : 'No',
-          type: item.request_off.leave_type.leave_type_group,
-          timeType: item.type,
-          color: '',
-          detail: [],
-        }));
-        setDateOff(dateOffHandle);
+        const offReponse = await axiosConfig.get('workday/calendar/admin');
+        setDateOff(offReponse.data);
+        full.push(...offReponse.data.map((item) => item.date));
+      } catch (error) {
+        setHasError(true);
+      }
+    })();
+    (async () => {
+      try {
+        const lunchReponse = await axiosConfig.get('user-lunch/all');
+        full.push(...lunchReponse.data.map((item) => item.date));
+        const arr = full.filter(function (elem, pos) {
+          return full.indexOf(elem) == pos;
+        });
+        setFullDays(arr);
+        let temptLunch = [];
+        let temptVeggie = [];
+        lunchReponse.data.forEach((element) => {
+          if (element.has_veggie) {
+            temptVeggie.push(element);
+          } else {
+            temptLunch.push(element);
+          }
+        });
+        setVeggie(temptVeggie);
+        setLunch(temptLunch);
       } catch (error) {
         setHasError(true);
       }
     })();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axiosConfig.get('user-lunch/all');
-  //       let notVeg = response.data.filter(
-  //         (item) => item.has_veggie === false
-  //       );
-  //       let hasVeg = response.data.filter(
-  //         (item) => item.has_veggie === true
-  //       );
-  //       let newNotVeg = this.changeFormatLunch(notVeg);
-  //       let newHasVeg = this.changeFormatLunch(hasVeg);
-  //       setDateOff(dateOffHandle);
-  //     } catch (error) {
-  //       setHasError(true);
-  //     }
-  //   })();
-  // }, []);
-
   return (
-    <View style={styles.container}>
-      <HeaderBar title='Company Calendar' navigation={navigation}></HeaderBar>
-      <View style={styles.frame}>
-        <TouchableOpacity style={styles.detailBtn}>
-          <Text
-            style={styles.detailText}
-            onPress={() => navigation.navigate('CalendarDetail')}
-          >
-            Detail
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.frameCalendar}>
-        <View style={{ height: 600 }}>
-          <Agenda
-            items={items}
-            renderItem={renderItem}
-            renderEmptyDate={renderEmptyDate}
-          />
+    <NativeBaseProvider>
+      <View style={styles.container}>
+        <HeaderBar title='Company Calendar' navigation={navigation}></HeaderBar>
+        <View style={styles.frame}>
+          <TouchableOpacity style={styles.detailBtn}>
+            <Text
+              style={styles.detailText}
+              onPress={() => navigation.navigate('CalendarDetail')}
+            >
+              Detail
+            </Text>
+          </TouchableOpacity>
         </View>
+        <View style={styles.frameCalendar}>
+          <View style={{ height: 600 }}>
+            <Agenda
+              items={items}
+              renderItem={renderItem}
+              selected={currentDay}
+              markingType={'custom'}
+              markedDates={
+                {
+                  // currentDay: {
+                  //   customStyles: {
+                  //     container: {
+                  //       backgroundColor: '#f9f5dc',
+                  //     },
+                  //   },
+                  // },
+                  // '2021-11-23': { selected: true },
+                }
+              }
+              theme={
+                {
+                  // agendaTodayColor: colors.primary, // today in list
+                  // todayBackgroundColor: colors.primary,
+                  // textSectionTitleColor: colors.primary,
+                  // selectedDayBackgroundColor: colors.primary, // calendar sel date
+                  // dayTextColor: colors.primary, // calendar day
+                  // dotColor: "white", // dots
+                  // textDisabledColor: "red"
+                }
+              }
+            />
+          </View>
+        </View>
+        {listOff !== null && (
+          <DaysOffList
+            isOpenModal={showModalOff}
+            closeModal={closeModalOff}
+            listItem={listOff}
+          />
+        )}
+        {listLunch !== null && (
+          <LunchList
+            isOpenModal={showModalLunch}
+            closeModal={closeModalLunch}
+            listItem={listLunch}
+            isVeggie={isListVeggie}
+          />
+        )}
       </View>
-    </View>
+    </NativeBaseProvider>
   );
 };

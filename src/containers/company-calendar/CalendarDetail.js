@@ -47,7 +47,7 @@ export const CalendarDetail = ({ navigation }) => {
             </View>
           </View>
         </View>
-        <View style={styles.calendarType}>
+        {/* <View style={styles.calendarType}>
           <Text style={styles.calendarTitle}>Description</Text>
           <View style={styles.calendarLegend}>
             <View style={styles.calendarLegendItem}>
@@ -57,7 +57,7 @@ export const CalendarDetail = ({ navigation }) => {
               <Text style={styles.calendarLegendText}>Holiday</Text>
             </View>
           </View>
-        </View>
+        </View> */}
         <TouchableOpacity
           style={styles.btnBack}
           onPress={() => navigation.navigate('CompanyCalendar')}
