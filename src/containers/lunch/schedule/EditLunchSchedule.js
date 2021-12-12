@@ -29,7 +29,6 @@ export const EditLunchSchedule = ({
   };
 
   const onSubmit = () => {
-    console.log(newData);
     validate() &&
       (async () => {
         try {

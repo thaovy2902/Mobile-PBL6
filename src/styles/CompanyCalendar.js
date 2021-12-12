@@ -4,6 +4,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'white',
   },
   frame: {
@@ -12,7 +13,14 @@ export default StyleSheet.create({
     marginTop: '4%',
   },
   frameCalendar: {
-    marginTop: 10,
+    marginTop: 10
+  },
+  cancelLunchBtn: {
+    bottom: 10,
+    top: 10,
+    margin: 10,
+    right: 10,
+    marginRight: 10
   },
   item: {
     backgroundColor: 'white',
@@ -75,4 +83,5 @@ export default StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  
 });

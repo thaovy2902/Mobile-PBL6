@@ -10,7 +10,6 @@ export default loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_SUCCESS":
       const {sub, iat, exp, nbf, scope} = jwt_decode(action.access_token);
-      console.log(scope)
       return {
         ...state,
         token: action.access_token,

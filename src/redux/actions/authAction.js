@@ -15,7 +15,6 @@ export const fetchLogin = (username, password) => {
         },
       })
       .then((response) => {
-        // console.log(response.data);
         dispatch(fetchLoginSuccess(response.data));
       })
       .catch((error) => console.error('Login Failed: ', error));
@@ -23,7 +22,6 @@ export const fetchLogin = (username, password) => {
 };
 
 export const fetchLoginSuccess = (data) => {
-  // console.log(data);
   return {
     type: 'LOGIN_SUCCESS',
     ...data,

@@ -42,7 +42,7 @@ const Login = ({ navigation, handleLogin }) => {
     // navigation.navigate("LoginSuccess");
 
     // props.handleLogin(email, password);
-    // handleLogin("superadmin@gmail.com", "Abc@12345");
+    handleLogin("superadmin@gmail.com", "Abc@12345");
     navigation.navigate('MainMenu');
   };
 
@@ -97,7 +97,6 @@ const Login = ({ navigation, handleLogin }) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     // manageQuestion: state.manageQuestion,
     // tempQuestion: state.tempQuestion,

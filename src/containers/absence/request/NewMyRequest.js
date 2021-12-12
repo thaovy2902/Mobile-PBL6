@@ -143,7 +143,6 @@ export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
               total_leaves: totalLeaves - 0.5,
               date: date,
             });
-            console.log(totalLeaves);
           } else {
             setTotalLeaves(totalLeaves + 0.5);
             setNewData({
