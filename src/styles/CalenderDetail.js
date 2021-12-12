@@ -50,7 +50,7 @@ export default StyleSheet.create({
     borderRadius: 4,
   },
   outlineYellowBox: {
-    borderColor: '#ffc87d',
+    borderColor: '#f9c74f',
     borderWidth: 3,
   },
   outlineBlueBox: {
@@ -58,17 +58,17 @@ export default StyleSheet.create({
     borderWidth: 3,
   },
   outlineGreenBox: {
-    borderColor: '#7fc990',
+    borderColor: '#90be6d',
     borderWidth: 3,
   },
   fullBlueBox: {
     backgroundColor: '#4da4e0',
   },
   fullYellowBox: {
-    backgroundColor: '#ffc87d',
+    backgroundColor: '#f9c74f',
   },
   fullGreenBox: {
-    backgroundColor: '#7fc990',
+    backgroundColor: '#90be6d',
   },
   fullPinkBox: {
     backgroundColor: '#ffbcbc',
