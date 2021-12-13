@@ -27,7 +27,7 @@ export const NewLunchProvider = ({
   };
 
   const onSubmit = () => {
-    validate() &&
+    // validate() &&
       (async () => {
         try {
           const response = await axiosConfig.post('provider/', newData);
@@ -100,6 +100,7 @@ export const NewLunchProvider = ({
                 Veggie
               </FormControl.Label>
               <Checkbox
+                accessibilityLabel="vegetarian"
                 isChecked={newData?.has_vegetarian}
                 onChange={(value) =>
                   setNewData({ ...newData, has_vegetarian: value })

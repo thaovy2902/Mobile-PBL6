@@ -1,11 +1,27 @@
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: 'http://192.168.1.8:8000/api/v1/',
+const axios = require("axios");
+import { store } from "../redux/store";
+const axiosConfig = axios.create({
+  baseURL: "http://192.168.1.150:8000/api/v1/",
 });
-const access_token =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6WyJ1c2VyOnZpZXdfcHVibGljX3VzZXJfaW5mb3JtYXRpb25fbGlzdCIsInJlbWFpbl9sZWF2ZTp2aWV3IiwidXNlcjphY2Nlc3NfcGVyc29uYWwiLCJ0eXBlX3BheTp2aWV3IiwidXNlcjplZGl0X3B1YmxpY191c2VyX2luZm9ybWF0aW9uX2xpc3QiLCJ0eXBlX29mZjp2aWV3IiwicHJvdmlkZXI6dmlldyIsInRlYW06dmlldyIsInN0YXRpc3RpY19kYXRlb2ZmOnRlYW0iLCJsdW5jaGVzOnZpZXciLCJyZXF1ZXN0X29mZjp2aWV3Iiwib2ZmaWNlOnZpZXciLCJ1c2VyX2x1bmNoOmdldF9hbGwiLCJ1c2VyX2x1bmNoOmVkaXQiLCJzdGF0aXN0aWNfZGF0ZW9mZjp1c2VyIiwicmVxdWVzdF9vZmY6ZWRpdCIsInVzZXJfbHVuY2g6dXBkYXRlX2xpc3RfYXV0b19ib29raW5nIl0sImV4cCI6MTYzOTI5MjcwNSwiaXNzdWVyIjoiRnVsbEhvcGUiLCJzdWIiOiIwODQ3ZTE1ZS1mMTg3LTQ5NDItOTIzNy0yOWUyOGRlMGMyZmIiLCJpYXQiOjE2MzkyODkxMDUsIm5iZiI6MTYzOTI4OTEwNX0.j4vVwNOzcvyb_4Oe48Cyo36of8E42b0qd9kz4xm0lW4se8lneldIgfPq496O0gDYKm2_rmyjxdItM34b_39EXrIcTpU8KnPXxH8peZzT15os-vw0tdtRggaoVOVe2as68rS8kRNpjKLFmOt8PsaN9dssVQdLwd9roQuySCtAGcHY5v36lBi9CajDOn35lwWuXico6ixIuoaPjSwb6ROslct-Ew2BaymX5bxQCTJcgndSdF6u6O7goWgN-WsKJvuFu2gFc4NjDvve6x6NEtMiZjrJa3GwLmXGlTwRWcIHGhmH5ejRSQA2JK5ZFmqy4LUotv5TjdFvTl6yeId1MzU_oA';
 
-instance.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+axiosConfig.interceptors.request.use(
+  async (request) => {
+    const access_token = store.getState().authReducer.token;
+    request.headers["Authorization"] = `Bearer ${access_token}`;
+    return request;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
 
-export default instance;
+axiosConfig.interceptors.response.use(
+  async (response) => {
+    return response;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
+
+export default axiosConfig;

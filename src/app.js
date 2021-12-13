@@ -15,6 +15,7 @@ import { Employee } from './containers/employee/Employee';
 import { LunchCalendar } from './containers/lunch/meals/LunchCalendar';
 import { LunchCalendarOptions } from './containers/lunch/meals/LunchCalendarOptions';
 import { PersonalInformation } from './containers/profile/PersonalInformation';
+import {ForgotPassWord1} from './containers/test'
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Stack.Screen name='Header' component={ForgotPassWord1} /> */}
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='LoginSuccess' component={MainMenu} />
         <Stack.Screen name='ForgotPassWord' component={ForgotPassWord} />

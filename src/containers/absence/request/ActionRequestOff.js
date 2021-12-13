@@ -20,7 +20,6 @@ export const ActionRequestOff = ({
 
   const onSubmit = () => {
     (async () => {
-      console.log(newData);
       try {
         if (action === 'Approved') {
           const response = await axiosConfig.post(

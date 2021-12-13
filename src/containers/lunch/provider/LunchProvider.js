@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
@@ -93,7 +93,9 @@ export const LunchProvider = () => {
     setIsRefresh(!isRefresh);
   };
 
+  // const mounted = useRef(false);
   useEffect(() => {
+    // mounted.current = true;
     (async () => {
       try {
         const response = await axiosConfig.get(`provider/`);
@@ -104,6 +106,9 @@ export const LunchProvider = () => {
         setIsLoading(false);
       }
     })();
+  //   return () => {
+  //     mounted.current = false;
+  // };
   }, [isRefresh]);
 
   if (isLoading) {
