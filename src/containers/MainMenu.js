@@ -51,7 +51,7 @@ export const MainMenu = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.frameSetting}>
+        {/* <View style={styles.frameSetting}>
           <TouchableOpacity>
             <Image
               style={styles.imgIcon}
@@ -59,7 +59,7 @@ export const MainMenu = ({ navigation }) => {
               source={require('../assets/icon_settings.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <SpeedDial
           isOpen={open}
           icon={{ name: 'add', color: '#4da4e0' }}

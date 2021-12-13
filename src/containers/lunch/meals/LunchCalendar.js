@@ -7,6 +7,7 @@ import detailStyles from '../../../styles/CalenderDetail';
 import moment from 'moment';
 import { SetLunchMeals } from './SetLunchMeals';
 import { CancelLunchMeals } from './CancelLunchMeals';
+import Loader from '../../../components/Loader';
 
 export const LunchCalendar = ({ navigation }) => {
   const today = moment(new Date()).format('YYYY-MM-DD');
@@ -15,17 +16,20 @@ export const LunchCalendar = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [items, setItems] = useState({});
   const [isRefresh, setIsRefresh] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleIsRefresh = () => {
     setIsRefresh(!isRefresh);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     (async () => {
       try {
         const response = await axiosConfig.get(`user-lunch/`);
         setData(response.data);
         setItems(getItems(response.data));
+        setIsLoading(false);
       } catch (error) {}
     })();
   }, [isRefresh]);
@@ -83,6 +87,10 @@ export const LunchCalendar = ({ navigation }) => {
       </View>
     );
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <View style={styles.container}>

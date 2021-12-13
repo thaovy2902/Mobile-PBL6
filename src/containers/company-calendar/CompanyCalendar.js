@@ -9,6 +9,7 @@ import axiosConfig from '../../core/axiosConfig';
 import moment from 'moment';
 import { DaysOffList } from './DaysOffList';
 import { LunchList } from './LunchList';
+import Loader from '../../components/Loader';
 
 export const CompanyCalendar = ({ navigation }) => {
   const [items, setItems] = useState(null);
@@ -26,6 +27,8 @@ export const CompanyCalendar = ({ navigation }) => {
 
   const [showModalOff, setShowModalOff] = useState(false);
   const [showModalLunch, setShowModalLunch] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const closeModalOff = () => {
     setShowModalOff(false);
@@ -121,9 +124,11 @@ export const CompanyCalendar = ({ navigation }) => {
       temptItem[a][2]['list'].push(item);
     });
     setItems(temptItem);
+    setIsLoading(false);
   }, [fullDays, lunch, veggie]);
 
   useEffect(() => {
+    setIsLoading(true);
     let full = [];
     (async () => {
       try {
@@ -158,6 +163,10 @@ export const CompanyCalendar = ({ navigation }) => {
       }
     })();
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <NativeBaseProvider>

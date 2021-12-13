@@ -42,7 +42,7 @@ const Login = ({ navigation, handleLogin }) => {
     // navigation.navigate("LoginSuccess");
 
     // props.handleLogin(email, password);
-    handleLogin("superadmin@gmail.com", "Abc@12345");
+    handleLogin('superadmin@gmail.com', 'Abc@12345');
     navigation.navigate('MainMenu');
   };
 
@@ -87,11 +87,11 @@ const Login = ({ navigation, handleLogin }) => {
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.forgotSection}>
+        {/* <View style={styles.forgotSection}>
           <TouchableOpacity onPress={onForgotPassword}>
             <Text style={styles.forgotButton}>Forgotten Account?</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );

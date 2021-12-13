@@ -7,7 +7,7 @@ export const CalendarDetail = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={[styles.calendarDetail]}>
-        <View style={styles.calendarType}>
+        {/* <View style={styles.calendarType}>
           <Text style={styles.calendarTitle}>Calendar Type</Text>
           <View style={styles.calendarLegend}>
             <View style={styles.calendarLegendItem}>
@@ -23,7 +23,7 @@ export const CalendarDetail = ({ navigation }) => {
               <Text style={styles.calendarLegendText}>Lunch</Text>
             </View>
           </View>
-        </View>
+        </View> */}
         <View style={styles.calendarType}>
           <Text style={styles.calendarTitle}>Today Information</Text>
           <View style={styles.calendarLegend}>
