@@ -1,13 +1,13 @@
-const axios = require("axios");
-import { store } from "../redux/store";
+const axios = require('axios');
+import { store } from '../redux/store';
 const axiosConfig = axios.create({
-  baseURL: "http://192.168.1.150:8000/api/v1/",
+  baseURL: 'http://192.168.1.8:8000/api/v1/',
 });
 
 axiosConfig.interceptors.request.use(
   async (request) => {
     const access_token = store.getState().authReducer.token;
-    request.headers["Authorization"] = `Bearer ${access_token}`;
+    request.headers['Authorization'] = `Bearer ${access_token}`;
     return request;
   },
   (error) => {

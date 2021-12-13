@@ -7,7 +7,7 @@ export const fetchLogin = (username, password) => {
     userData.append('password', 'Abc@12345');
     userData.append('grant_type', 'password');
     axios
-      .post(`http://192.168.1.150:8000/api/v1/oauth2/login`, userData, {
+      .post(`http://192.168.1.8:8000/api/v1/oauth2/login`, userData, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

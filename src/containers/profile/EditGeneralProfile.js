@@ -7,42 +7,53 @@ import axiosConfig from '../../core/axiosConfig';
 export const EditGeneralProfile = ({
   isOpenModal,
   closeModal,
+  user,
+  userTitle,
+  userEmail,
   id,
   handleIsRefresh,
 }) => {
-  const [newData, setNewData] = useState(null);
+  const [data, setData] = useState({
+    user: id,
+    birth_day: null,
+    email: userEmail,
+    gender: user.gender,
+    id: user.id,
+    join_date: user.join_date,
+    maximum_level_approved: user.maximum_level_approved,
+    name: user.name,
+    personal_email: user.personal_email,
+    phone: user.phone,
+    slack_id: user.slack_id,
+    title: { id: userTitle.id, title: userTitle.title },
+  });
+  const [title, setTitle] = useState(null);
   const [hasError, setHasError] = useState(false);
 
-  const validate = () => {
-    if (newData.name === undefined) {
-      return false;
-    }
-    return true;
+  const onSubmit = () => {
+    (async () => {
+      try {
+        console.log(data);
+        const response = await axiosConfig.put(`user/profile/${data.id}`, data);
+        handleIsRefresh();
+        closeModal();
+      } catch (error) {
+        setHasError(true);
+        closeModal();
+      }
+    })();
   };
 
-  const onSubmit = () => {
-    validate() &&
-      (async () => {
-        try {
-          const response = await axiosConfig.put(`user/profile/${id}`, newData);
-          handleIsRefresh();
-          closeModal();
-        } catch (error) {
-          setHasError(true);
-          closeModal();
-        }
-      })();
-  };
   useEffect(() => {
     (async () => {
       try {
-        const response = await axiosConfig.get(`user/profile/${id}`);
-        setNewData(response);
+        const response = await axiosConfig.get('user/title');
+        setTitle(response.data);
       } catch (error) {
         setHasError(true);
       }
     })();
-  }, [id]);
+  }, []);
 
   return (
     <>
@@ -54,19 +65,17 @@ export const EditGeneralProfile = ({
             <FormControl>
               <FormControl.Label>Name</FormControl.Label>
               <Input
-                value={newData?.name}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, name: value })
-                }
+                value={data?.name}
+                onChangeText={(value) => setData({ ...data, name: value })}
               />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Email</FormControl.Label>
               <Input
-                value={newData?.email}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, email: value })
-                }
+                value={data?.email}
+                onChangeText={(value) => {
+                  setData({ ...data, email: value });
+                }}
               />
             </FormControl>
             <FormControl mt='3'>
@@ -76,10 +85,17 @@ export const EditGeneralProfile = ({
                 accessibilityLabel='Select'
                 placeholder='Select'
                 mt={1}
+                selectedValue={data?.gender}
+                onValueChange={(value) => {
+                  setData({
+                    ...data,
+                    gender: value,
+                  });
+                }}
               >
-                <Select.Item label='Male' value='male' />
-                <Select.Item label='Female' value='female' />
-                <Select.Item label='Other' value='other' />
+                <Select.Item label='Male' value={0} />
+                <Select.Item label='Female' value={1} />
+                <Select.Item label='Other' value={2} />
               </Select>
             </FormControl>
             <FormControl mt='3'>
@@ -87,7 +103,7 @@ export const EditGeneralProfile = ({
               <DatePicker
                 style={{ width: 200, backGroundColor: 'transparent' }}
                 mode='date'
-                date={newData?.join_date}
+                date={data?.join_date}
                 confirmBtnText='Confirm'
                 cancelBtnText='Cancel'
                 customStyles={{
@@ -100,36 +116,34 @@ export const EditGeneralProfile = ({
                     marginLeft: 50,
                   },
                 }}
-                onDateChange={(date) =>
-                  setNewData({ ...newData, join_date: date })
-                }
+                onDateChange={(date) => setData({ ...data, join_date: date })}
               />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Personal Email</FormControl.Label>
               <Input
-                value={newData?.personal_email}
+                value={data?.personal_email}
                 onChangeText={(value) =>
-                  setNewData({ ...newData, personal_email: value })
+                  setData({
+                    ...data,
+                    personal_email: value,
+                  })
                 }
               />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Phone</FormControl.Label>
               <Input
-                value={newData?.phone}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, phone: value })
-                }
+                keyboardType='numeric'
+                value={data?.phone}
+                onChangeText={(value) => setData({ ...data, phone: value })}
               />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Slack ID</FormControl.Label>
               <Input
-                value={newData?.slack_id}
-                onChangeText={(value) =>
-                  setNewData({ ...newData, slack_id: value })
-                }
+                value={data?.slack_id}
+                onChangeText={(value) => setData({ ...data, slack_id: value })}
               />
             </FormControl>
             <FormControl mt='3'>
@@ -139,10 +153,17 @@ export const EditGeneralProfile = ({
                 accessibilityLabel='Select'
                 placeholder='Select'
                 mt={1}
+                selectedValue={data?.title}
+                onValueChange={(value) => {
+                  setData({
+                    ...data,
+                    title: { id: value.id, title: value.title },
+                  });
+                }}
               >
-                <Select.Item label='Project Management' value='PM' />
-                <Select.Item label='Team Leader' value='TL' />
-                <Select.Item label='Developer' value='dev' />
+                {title?.map((item) => (
+                  <Select.Item label={item.title} value={item} key={item.id} />
+                ))}
               </Select>
             </FormControl>
             <FormControl mt='3'>
@@ -150,7 +171,8 @@ export const EditGeneralProfile = ({
               <DatePicker
                 style={{ width: 200, backGroundColor: 'transparent' }}
                 mode='date'
-                date={newData?.birth_day}
+                date={data?.birth_day !== null ? data?.birth_day : null}
+                placeholder='Please input'
                 confirmBtnText='Confirm'
                 cancelBtnText='Cancel'
                 customStyles={{
@@ -164,7 +186,10 @@ export const EditGeneralProfile = ({
                   },
                 }}
                 onDateChange={(date) =>
-                  setNewData({ ...newData, birth_day: date })
+                  setData({
+                    ...data,
+                    birth_day: date,
+                  })
                 }
               />
             </FormControl>

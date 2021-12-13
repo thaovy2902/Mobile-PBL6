@@ -89,7 +89,11 @@ export const CompanyCalendar = ({ navigation }) => {
     );
   });
   const renderEmptyDate = useCallback(() => {
-    return <View style={styles.item}></View>;
+    return (
+      <View style={styles.item}>
+        <Text style={styles.emptyText}>No information</Text>
+      </View>
+    );
   });
 
   useEffect(() => {
@@ -174,31 +178,11 @@ export const CompanyCalendar = ({ navigation }) => {
             <Agenda
               items={items}
               renderItem={renderItem}
+              renderEmptyData={renderEmptyDate}
+              renderEmptyDate={renderEmptyDate}
               selected={currentDay}
               markingType={'custom'}
-              markedDates={
-                {
-                  // currentDay: {
-                  //   customStyles: {
-                  //     container: {
-                  //       backgroundColor: '#f9f5dc',
-                  //     },
-                  //   },
-                  // },
-                  // '2021-11-23': { selected: true },
-                }
-              }
-              theme={
-                {
-                  // agendaTodayColor: colors.primary, // today in list
-                  // todayBackgroundColor: colors.primary,
-                  // textSectionTitleColor: colors.primary,
-                  // selectedDayBackgroundColor: colors.primary, // calendar sel date
-                  // dayTextColor: colors.primary, // calendar day
-                  // dotColor: "white", // dots
-                  // textDisabledColor: "red"
-                }
-              }
+              markedDates={{}}
             />
           </View>
         </View>
