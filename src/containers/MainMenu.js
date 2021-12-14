@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button, Modal, NativeBaseProvider } from 'native-base';
 import { SpeedDial } from 'react-native-elements';
 import styles from '../styles/MainMenu';
+import { logOut } from '../redux/actions/authAction';
 
 export const MainMenu = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
@@ -72,7 +78,10 @@ export const MainMenu = ({ navigation }) => {
             color='#ffffff'
             icon={{ name: 'logout', color: '#4da4e0' }}
             title='Logout'
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => {
+              navigation.navigate('Login');
+              dispatch(logOut());
+            }}
           />
         </SpeedDial>
       </View>

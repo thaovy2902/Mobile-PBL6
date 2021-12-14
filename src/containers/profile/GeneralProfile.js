@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { View, Text } from 'react-native';
 import { OptionsButton } from '../../components/OptionsButton';
 import { EditGeneralProfile } from './EditGeneralProfile';
@@ -7,6 +9,8 @@ import styles from '../../styles/PersonalInformation';
 import axiosConfig from '../../core/axiosConfig';
 
 export const GeneralProfile = () => {
+  const authState = useSelector((state) => state.authReducer);
+
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -25,9 +29,7 @@ export const GeneralProfile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axiosConfig.get(
-          `user/920dba82-17ab-42a5-b270-83b58cc6e413`
-        );
+        const response = await axiosConfig.get(`user/${authState.userID}`);
         setUser(response.data);
       } catch (error) {
         setHasError(true);

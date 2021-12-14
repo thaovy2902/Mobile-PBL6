@@ -36,6 +36,9 @@ export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
   const [hasError, setHasError] = React.useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const [name, setName] = useState(null);
+  const [id, setID] = useState(null);
+
   const validate = () => {
     if (newData.name === undefined) {
       return false;
@@ -192,7 +195,7 @@ export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
     (async () => {
       try {
         const response2 = await axiosConfig.get(
-          `workday/request-off/total_off_by_types?profile=432e94fa-bc1c-4049-acf0-96c4152b7487&leave_type=${typeOff}&year=2021`
+          `workday/request-off/total_off_by_types?profile=${id}&leave_type=${typeOff}&year=2021`
         );
         setTotalTypeOffDays(response2.data.total_leaves);
       } catch (error) {
@@ -208,6 +211,8 @@ export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
           'workday/remain-leave/retrieve_date'
         );
         setLeaveDays(response1.data.current_days_off.toString());
+        setID(response1.data.profile.id);
+        setName(response1.data.profile.name);
       } catch (error) {
         setHasError(true);
       }
@@ -230,7 +235,7 @@ export const NewMyRequest = ({ isOpenModal, closeModal, handleIsRefresh }) => {
           <Modal.Body>
             <FormControl>
               <FormControl.Label>Name</FormControl.Label>
-              <Input isReadOnly value='Duong Thao Vy' />
+              <Input isReadOnly value={name} />
             </FormControl>
             <FormControl mt='3'>
               <FormControl.Label>Available leave days</FormControl.Label>

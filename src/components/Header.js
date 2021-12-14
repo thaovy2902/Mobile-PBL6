@@ -11,7 +11,7 @@ const MyCustomRightComponent = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
         <Image
           style={[styles.img, styles.userHeaderImg]}
-          source={require('../assets/user_img.jpg')}
+          source={require('../assets/default-user.png')}
         />
       </TouchableOpacity>
     </View>

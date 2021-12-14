@@ -9,7 +9,6 @@ export default StyleSheet.create({
     borderRadius: 100,
   },
   userHeader: {
-    width: 35,
-    height: 35,
+    marginTop: -5,
   },
 });
