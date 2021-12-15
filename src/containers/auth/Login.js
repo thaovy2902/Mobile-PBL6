@@ -26,7 +26,6 @@ const Login = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    console.log(authState.error);
     if (authState.error) {
       setError(true);
     }

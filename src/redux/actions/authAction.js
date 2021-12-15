@@ -47,7 +47,6 @@ export const logOut = () => {
 export const handleIsAdmin = (accessToken) => {
   return (dispatch) => {
     const { sub, iat, exp, nbf, scope } = jwt_decode(accessToken);
-    console.log(sub);
     axios
       .get(`http://192.168.1.8:8000/api/v1/user/${sub}`, {
         method: 'GET',

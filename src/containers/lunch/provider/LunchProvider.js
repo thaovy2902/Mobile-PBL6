@@ -90,7 +90,7 @@ export const LunchProvider = () => {
     item.phone,
     item.budget,
     checkBoxVeggie(item.has_vegetarian),
-    authState ? [editBtn(item), deleteBtn(item.id)] : '',
+    authState.isAdmin ? [editBtn(item), deleteBtn(item.id)] : '',
   ]);
 
   const handleIsRefresh = () => {
@@ -122,7 +122,7 @@ export const LunchProvider = () => {
   return (
     <>
       <View style={styles.container}>
-        {authState && (
+        {authState.isAdmin && (
           <View
             style={{
               backgroundColor: '#4da4e0',

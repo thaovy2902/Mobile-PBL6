@@ -43,11 +43,20 @@ export const Employee = ({ navigation }) => {
     </Text>
   );
 
+  const InFoTeam = (item) => (
+    <Text
+      style={{ textAlign: 'center', color: '#4da4e0' }}
+      onPress={() => navigation.navigate('TeamProfile', { id: item.id })}
+    >
+      {item.name}
+    </Text>
+  );
+
   const tableData = data?.map((item) => [
     item.email,
     InfoEmployee(item),
     item.title?.title,
-    item.profile.teams.map((item) => item.name),
+    item.profile.teams.map((item) => InFoTeam(item)),
   ]);
 
   useEffect(() => {
@@ -62,11 +71,7 @@ export const Employee = ({ navigation }) => {
   }, []);
   return (
     <NativeBaseProvider>
-      <HeaderBar
-        title='Employee Management'
-        navigation={navigation}
-        backNavigate='MainMenu'
-      />
+      <HeaderBar title='Employee Management' navigation={navigation} />
       {/* <View style={styles.employeeSearch}>
         <FormControl mt='3'>
           <Input size='lg' maxWidth='100%' placeholder='Enter name' />

@@ -17,23 +17,30 @@ const MyCustomRightComponent = ({ navigation }) => {
     </View>
   );
 };
-const MyCustomLeftComponent = ({ navigation }) => {
+const MyCustomLeftComponent = ({ navigation, backNavigate }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('MainMenu')}
+      onPress={() =>
+        navigation.navigate(backNavigate ? backNavigate : 'MainMenu')
+      }
       style={styles.menuBtn}
     >
       <Icon name='arrow-left' size={30} color='#fff' />
     </TouchableOpacity>
   );
 };
-const HeaderBar = ({ title, navigation }) => {
+const HeaderBar = ({ title, navigation, backNavigate }) => {
   return (
     <Header
       containerStyle={{
         backgroundColor: '#4da4e0',
       }}
-      leftComponent={<MyCustomLeftComponent navigation={navigation} />}
+      leftComponent={
+        <MyCustomLeftComponent
+          navigation={navigation}
+          backNavigate={backNavigate}
+        />
+      }
       centerComponent={{
         text: title,
         style: { color: '#fff', fontSize: 20, fontWeight: '500' },

@@ -33,7 +33,6 @@ export const EditGeneralProfile = ({
   const onSubmit = () => {
     (async () => {
       try {
-        console.log(data);
         const response = await axiosConfig.put(`user/profile/${data.id}`, data);
         handleIsRefresh();
         closeModal();

@@ -15,7 +15,8 @@ import { Employee } from './containers/employee/Employee';
 import { LunchCalendar } from './containers/lunch/meals/LunchCalendar';
 import { LunchCalendarOptions } from './containers/lunch/meals/LunchCalendarOptions';
 import { PersonalInformation } from './containers/profile/PersonalInformation';
-import {ForgotPassWord1} from './containers/test'
+import { ForgotPassWord1 } from './containers/test';
+import { TeamProfile } from './containers/teams/TeamProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,7 @@ const App = () => {
           component={LunchCalendarOptions}
         />
         <Stack.Screen name='Profile' component={PersonalInformation} />
+        <Stack.Screen name='TeamProfile' component={TeamProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

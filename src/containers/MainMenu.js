@@ -45,7 +45,6 @@ export const MainMenu = ({ navigation }) => {
             <TouchableOpacity
               style={[styles.menuItem, styles.menuItemMR]}
               onPress={() => setShowModal(true)}
-              // onPress={() => navigation.navigate('Request')}
             >
               <Text style={styles.menuItemText}>Absence Management</Text>
             </TouchableOpacity>
@@ -57,6 +56,7 @@ export const MainMenu = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
+
         {/* <View style={styles.frameSetting}>
           <TouchableOpacity>
             <Image
@@ -81,6 +81,14 @@ export const MainMenu = ({ navigation }) => {
             onPress={() => {
               navigation.navigate('Login');
               dispatch(logOut());
+            }}
+          />
+          <SpeedDial.Action
+            color='#ffffff'
+            icon={{ name: 'edit', color: '#4da4e0' }}
+            title='Profile'
+            onPress={() => {
+              navigation.navigate('Profile');
             }}
           />
         </SpeedDial>

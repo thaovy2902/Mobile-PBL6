@@ -1,7 +1,4 @@
-import { useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-//const authState = useSelector((state) => state.authReducer);
 
 const axios = require('axios');
 const axiosConfig = axios.create({
