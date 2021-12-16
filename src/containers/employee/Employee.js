@@ -36,6 +36,7 @@ export const Employee = ({ navigation }) => {
 
   const InfoEmployee = (item) => (
     <Text
+      key={item.id}
       style={{ textAlign: 'center', color: '#4da4e0' }}
       onPress={() => handleOpenModal(item)}
     >
@@ -45,6 +46,7 @@ export const Employee = ({ navigation }) => {
 
   const InFoTeam = (item) => (
     <Text
+      key={item.id}
       style={{ textAlign: 'center', color: '#4da4e0' }}
       onPress={() => navigation.navigate('TeamProfile', { id: item.id })}
     >

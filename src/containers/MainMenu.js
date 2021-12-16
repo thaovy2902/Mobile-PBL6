@@ -68,7 +68,7 @@ export const MainMenu = ({ navigation }) => {
         </View> */}
         <SpeedDial
           isOpen={open}
-          icon={{ name: 'add', color: '#4da4e0' }}
+          icon={{ name: 'settings', color: '#4da4e0' }}
           openIcon={{ name: 'close', color: '#4da4e0' }}
           onOpen={() => setOpen(!open)}
           onClose={() => setOpen(!open)}

@@ -73,6 +73,7 @@ export const MyRequest = () => {
 
   const optionsBtn = (status, id) => (
     <View
+      key={id}
       style={{
         flexDirection: 'row',
         justifyContent: 'space-around',

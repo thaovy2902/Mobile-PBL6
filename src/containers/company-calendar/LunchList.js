@@ -18,6 +18,7 @@ export const LunchList = ({ isOpenModal, closeModal, listItem, isVeggie }) => {
             <View>
               {listItem?.map((item, index) => (
                 <Text
+                  key={index}
                   style={{
                     color: '#4da4e0',
                     marginLeft: 20,

@@ -70,6 +70,7 @@ export const LeaveTypes = () => {
 
   const editBtn = (item) => (
     <TouchableOpacity
+      key={item}
       style={{ paddingLeft: 10, paddingRight: 10 }}
       onPress={() => handleOpenModalEdit(item)}
     >
@@ -77,7 +78,7 @@ export const LeaveTypes = () => {
     </TouchableOpacity>
   );
   const deleteBtn = (id) => (
-    <TouchableOpacity onPress={() => handlePressDelete(id)}>
+    <TouchableOpacity key={item} onPress={() => handlePressDelete(id)}>
       <Icon name='trash-alt' size={24} color='#4da4e0' />
     </TouchableOpacity>
   );
