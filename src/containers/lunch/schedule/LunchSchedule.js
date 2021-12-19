@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -12,6 +14,8 @@ import { EditLunchSchedule } from './EditLunchSchedule';
 import styles from '../../../styles/LeaveTypesGroup';
 
 export const LunchSchedule = () => {
+  const authState = useSelector((state) => state.authReducer);
+
   tableHead = ['Date', 'Provider', 'Note', 'Veggie', 'Action'];
   widthArr = [140, 80, 180, 100, 80];
 
@@ -86,7 +90,7 @@ export const LunchSchedule = () => {
     item.name_provider,
     item.note,
     checkBoxVeggie(item.has_veggie),
-    [editBtn(item), deleteBtn(item.id)],
+    authState.isAdmin ? [editBtn(item), deleteBtn(item.id)] : '',
   ]);
 
   const handleIsRefresh = () => {
@@ -113,19 +117,22 @@ export const LunchSchedule = () => {
   return (
     <>
       <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: '#4da4e0',
-            width: 50,
-            marginTop: 10,
-          }}
-        >
-          <Button
-            leftIcon={<Icon name='plus' size={15} color='white' />}
-            onPress={openModalNew}
-            variant='unstyled'
-          />
-        </View>
+        {authState.isAdmin && (
+          <View
+            style={{
+              backgroundColor: '#4da4e0',
+              width: 50,
+              marginTop: 10,
+            }}
+          >
+            <Button
+              leftIcon={<Icon name='plus' size={15} color='white' />}
+              onPress={openModalNew}
+              variant='unstyled'
+            />
+          </View>
+        )}
+
         <NewLunchSchedule
           isOpenModal={showModalNew}
           closeModal={closeModalNew}

@@ -1,50 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as actions from '../../redux/actions/authAction';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import styles from '../../styles/Login';
 
-const Login = ({ navigation, handleLogin }) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.authReducer);
+
   const onForgotPassword = () => {
     navigation.navigate('ForgotPassWord');
   };
-  const onLoggedIn = async () => {
-    // const formBody = new FormData();
-    // formBody.append("username", email);
-    // formBody.append("password", password);
-    // formBody.append("grant_type", "password");
-
-    // await fetch("http://127.0.0.1:8000/api/v1/oauth2/login", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   body: formBody,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.access_token) {
-    //       setError(false);
-    //       setEmail("");
-    //       setPassword("");
-    //       navigation.navigate("LoginSuccess");
-    //     } else {
-    //       setError(true);
-    //     }
-    //   });
-    // navigation.navigate("LoginSuccess");
-
-    // props.handleLogin(email, password);
-    handleLogin("superadmin@gmail.com", "Abc@12345");
-    navigation.navigate('MainMenu');
+  const onLoggedIn = () => {
+    dispatch(actions.fetchLogin(email, password));
   };
+
+  useEffect(() => {
+    dispatch(actions.resetAuth());
+  }, []);
+
+  useEffect(() => {
+    if (authState.error) {
+      setError(true);
+    }
+    if (authState.token) {
+      setEmail('');
+      setPassword('');
+      setError(false);
+      navigation.navigate('MainMenu');
+    }
+  }, [authState]);
 
   return (
     <View style={styles.container}>
@@ -87,28 +78,14 @@ const Login = ({ navigation, handleLogin }) => {
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.forgotSection}>
+        {/* <View style={styles.forgotSection}>
           <TouchableOpacity onPress={onForgotPassword}>
             <Text style={styles.forgotButton}>Forgotten Account?</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    // manageQuestion: state.manageQuestion,
-    // tempQuestion: state.tempQuestion,
-    // loading: state.loading,
-  };
-};
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    handleLogin: (email, password) => {
-      dispatch(actions.fetchLogin(email, password));
-    },
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

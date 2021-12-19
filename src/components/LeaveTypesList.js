@@ -6,15 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export const LeaveTypesList = ({ tableHead, data, widthArr }) => {
   const editBtn = (id) => (
-    <TouchableOpacity
-      style={{ paddingLeft: 10, paddingRight: 10 }}
-      onPress={() => console.log(id)}
-    >
+    <TouchableOpacity style={{ paddingLeft: 10, paddingRight: 10 }}>
       <Icon name='edit' size={24} color='#4da4e0' />
     </TouchableOpacity>
   );
   const deleteBtn = (id) => (
-    <TouchableOpacity onPress={() => console.log(id)}>
+    <TouchableOpacity>
       <Icon name='trash-alt' size={24} color='#4da4e0' />
     </TouchableOpacity>
   );

@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button, Modal, NativeBaseProvider } from 'native-base';
 import { SpeedDial } from 'react-native-elements';
 import styles from '../styles/MainMenu';
+import { logOut } from '../redux/actions/authAction';
 
 export const MainMenu = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
@@ -39,7 +45,6 @@ export const MainMenu = ({ navigation }) => {
             <TouchableOpacity
               style={[styles.menuItem, styles.menuItemMR]}
               onPress={() => setShowModal(true)}
-              // onPress={() => navigation.navigate('Request')}
             >
               <Text style={styles.menuItemText}>Absence Management</Text>
             </TouchableOpacity>
@@ -51,7 +56,8 @@ export const MainMenu = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.frameSetting}>
+
+        {/* <View style={styles.frameSetting}>
           <TouchableOpacity>
             <Image
               style={styles.imgIcon}
@@ -59,10 +65,10 @@ export const MainMenu = ({ navigation }) => {
               source={require('../assets/icon_settings.png')}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <SpeedDial
           isOpen={open}
-          icon={{ name: 'add', color: '#4da4e0' }}
+          icon={{ name: 'settings', color: '#4da4e0' }}
           openIcon={{ name: 'close', color: '#4da4e0' }}
           onOpen={() => setOpen(!open)}
           onClose={() => setOpen(!open)}
@@ -72,7 +78,18 @@ export const MainMenu = ({ navigation }) => {
             color='#ffffff'
             icon={{ name: 'logout', color: '#4da4e0' }}
             title='Logout'
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => {
+              navigation.navigate('Login');
+              dispatch(logOut());
+            }}
+          />
+          <SpeedDial.Action
+            color='#ffffff'
+            icon={{ name: 'edit', color: '#4da4e0' }}
+            title='Profile'
+            onPress={() => {
+              navigation.navigate('Profile');
+            }}
           />
         </SpeedDial>
       </View>

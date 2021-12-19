@@ -13,7 +13,7 @@ const initialLayout = { width: Dimensions.get('window').width };
 const renderScene = SceneMap({
   first: MyRequest,
   second: ApprovalRequest,
-  third: OfficeRequest,
+  //third: OfficeRequest,
 });
 
 export const Request = ({ navigation }) => {
@@ -21,7 +21,7 @@ export const Request = ({ navigation }) => {
   const [routes] = React.useState([
     { key: 'first', title: 'My Request' },
     { key: 'second', title: 'Approval' },
-    { key: 'third', title: 'Office Request' },
+    //{ key: 'third', title: 'Office Request' },
   ]);
 
   const renderTabBar = (props) => {

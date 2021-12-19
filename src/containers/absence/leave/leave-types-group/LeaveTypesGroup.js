@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -11,6 +13,8 @@ import { EditLeaveTypesGroup } from './EditLeaveTypesGroup';
 import styles from '../../../../styles/LeaveTypesGroup';
 
 export const LeaveTypesGroup = () => {
+  const authState = useSelector((state) => state.authReducer);
+
   const tableHead = ['Name', 'Pay Choices', 'Actions'];
   const widthArr = [130, 170, 80];
 
@@ -83,7 +87,7 @@ export const LeaveTypesGroup = () => {
       item.is_company_pay && '\n',
       item.is_insurance_pay ? 'Insurance Pays' : '',
     ],
-    [editBtn(item), deleteBtn(item.id)],
+    authState.isAdmin ? [editBtn(item), deleteBtn(item.id)] : '',
   ]);
 
   const handleIsRefresh = () => {
@@ -106,19 +110,21 @@ export const LeaveTypesGroup = () => {
   return (
     <>
       <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: '#4da4e0',
-            width: 50,
-            marginTop: 10,
-          }}
-        >
-          <Button
-            leftIcon={<Icon name='plus' size={15} color='white' />}
-            onPress={openModalNew}
-            variant='unstyled'
-          />
-        </View>
+        {authState.isAdmin && (
+          <View
+            style={{
+              backgroundColor: '#4da4e0',
+              width: 50,
+              marginTop: 10,
+            }}
+          >
+            <Button
+              leftIcon={<Icon name='plus' size={15} color='white' />}
+              onPress={openModalNew}
+              variant='unstyled'
+            />
+          </View>
+        )}
         <NewLeaveTypesGroup
           isOpenModal={showModalNew}
           closeModal={closeModalNew}
